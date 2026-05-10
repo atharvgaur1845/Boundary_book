@@ -17,9 +17,10 @@ if (!KEY) { console.error('CRICAPI_KEY missing'); process.exit(1); }
 const BASE = 'https://api.cricapi.com/v1';
 const OUT  = path.join(__dirname, '..', 'data', 'feed.json');
 
-// Per-run caps so a runaway never blows the quota
-const CAP_INFO  = 6;
-const CAP_SQUAD = 6;
+// Per-run caps — 3h cron × 8 runs/day, free tier is 100 calls/day
+// budget: ~2 list + 1 series (skipped when cached) + 3 info + 1 squad = ~7/run × 8 = 56/day
+const CAP_INFO  = 3;
+const CAP_SQUAD = 1;
 
 // Time windows
 const SQUAD_FETCH_WINDOW_MS = 7 * 24 * 60 * 60 * 1000; // pull squads up to 7 days ahead
@@ -81,18 +82,24 @@ async function main() {
     safe('matches',        call('matches',        { offset: 0 }))
   ]);
 
-  // 2) Series-based pull — most reliable for IPL
+  // 2) Series-based pull — most reliable for IPL.
+  // Re-use the series ID from the previous feed if available (saves one call/run).
   let seriesMatches = [];
   let seriesMeta = null;
   try {
-    const series = await call('series', { offset: 0, search: 'Indian Premier League' });
-    if (series?.[0]?.id) {
-      seriesMeta = { id: series[0].id, name: series[0].name };
-      const info = await call('series_info', { id: series[0].id });
+    let prevSeries = null;
+    try { prevSeries = JSON.parse(fs.readFileSync(OUT, 'utf8')).series; } catch {}
+    if (!prevSeries?.id) {
+      const hit = await call('series', { offset: 0, search: 'Indian Premier League' });
+      prevSeries = hit?.[0] ? { id: hit[0].id, name: hit[0].name } : null;
+    }
+    if (prevSeries?.id) {
+      seriesMeta = prevSeries;
+      const info = await call('series_info', { id: prevSeries.id });
       const list = info?.matchList || info?.matches || [];
       seriesMatches = list.map(m => ({
         ...m,
-        series: m.series || series[0].name || 'Indian Premier League'
+        series: m.series || prevSeries.name || 'Indian Premier League'
       }));
     }
   } catch (e) {

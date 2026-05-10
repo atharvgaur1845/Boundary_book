@@ -25,6 +25,7 @@
       <a href="#/history" data-route="history">History</a>
       <a href="#/settings" data-route="settings">Settings</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light / dark mode" aria-label="Toggle theme">🌙</button>
     <div class="wallet" id="wallet">
       <div class="wallet-name" id="walletName">Guest</div>
       <div class="wallet-balance">
@@ -41,6 +42,13 @@
     <span>Boundary Book · IPL Fantasy · For amusement only · Match data via <a href="https://cricapi.com" target="_blank" rel="noopener">CricAPI</a></span>
   </footer>
 
+  <!-- Apply saved theme before first paint to avoid flash -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('bb.v1.theme') || 'dark';
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
   <script src="js/data.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/api.js"></script>

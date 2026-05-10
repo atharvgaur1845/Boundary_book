@@ -2,7 +2,7 @@ name: Fetch IPL feed
 
 on:
   schedule:
-    - cron: '0 * * * *'       # every hour (delta cache keeps API calls low)
+    - cron: '0 */3 * * *'     # every 3 hours — delta cache + cached series keeps us ~30 calls/day
   workflow_dispatch:            # manual trigger from the Actions tab
 
 permissions:

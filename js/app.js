@@ -959,6 +959,21 @@
     `;
   }
 
+  // ------------------------------------------------------------- theme toggle
+
+  const TOGGLE_BTN = $("#themeToggle");
+  function applyTheme(t) {
+    document.documentElement.dataset.theme = t;
+    TOGGLE_BTN.textContent = t === "dark" ? "🌙" : "☀️";
+    localStorage.setItem("bb.v1.theme", t);
+  }
+  TOGGLE_BTN.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(next);
+  });
+  // Sync icon to whatever was applied by the pre-paint inline script
+  applyTheme(document.documentElement.dataset.theme || "dark");
+
   // ------------------------------------------------------------- boot
 
   Store.ensureProfile();
