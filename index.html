@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boundary Book — IPL Fantasy Ledger</title>
+  <meta name="description" content="A classical IPL fantasy betting ledger. Pick a contest, place your call, settle on result." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">⚜</span>
+      <div>
+        <h1>Boundary Book</h1>
+        <span class="tagline">Established 2026 · A Gentleman's Fantasy Ledger</span>
+      </div>
+    </div>
+    <nav class="topnav" id="topnav">
+      <a href="#/matches" data-route="matches">Matches</a>
+      <a href="#/contests" data-route="contests">My Contests</a>
+      <a href="#/history" data-route="history">History</a>
+      <a href="#/settings" data-route="settings">Settings</a>
+    </nav>
+    <div class="wallet" id="wallet">
+      <div class="wallet-name" id="walletName">Guest</div>
+      <div class="wallet-balance">
+        <span class="coin">₹</span><span id="walletBalance">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="view" class="view"></main>
+
+  <div id="modalRoot"></div>
+
+  <footer class="footer">
+    <span>Boundary Book · IPL Fantasy · For amusement only · Match data via <a href="https://cricapi.com" target="_blank" rel="noopener">CricAPI</a></span>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/contests.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
