@@ -140,14 +140,6 @@
     });
 
     const area = $("#matchArea");
-    if (!Api.hasKey()) {
-      area.innerHTML = emptyState("No API key set",
-        "Add a free CricAPI key under <a href='#/settings'>Settings</a> to load live IPL fixtures. Until then, the contest engine and wallet still function.",
-        "🔑");
-      $("#dateStrip").innerHTML = "";
-      return;
-    }
-
     area.innerHTML = `<div class="spinner"></div>`;
     try {
       if (force || !matchCache) {
@@ -155,45 +147,74 @@
       }
       const diag = Api.getDiagnostics();
       if (!matchCache.length && !showAllCricket && diag) {
-        // No IPL matches, but the API responded. Show what's actually out there.
         area.innerHTML = noIplState(diag);
         $("#dateStrip").innerHTML = "";
         $("#showAllInline")?.addEventListener("click", () => {
           showAllCricket = true; matchCache = null; renderMatches({ force: true });
+        });
+        $("#reloadFeedInline")?.addEventListener("click", async () => {
+          matchCache = null;
+          await Api.loadFeed({ force: true }).catch(() => {});
+          renderMatches({ force: true });
         });
         return;
       }
       renderDateStrip(matchCache);
       renderMatchCards(matchCache);
     } catch (e) {
-      area.innerHTML = emptyState("Couldn't fetch matches",
-        esc(e.message) + " — verify your API key in Settings or try again later.",
+      area.innerHTML = emptyState("Couldn't load fixtures",
+        esc(e.message) + " — try Reload Feed in Settings.",
         "⚠");
     }
   }
 
   function noIplState(diag) {
-    const series = diag.sampleSeries.length
+    const series = diag.sampleSeries?.length
       ? `<p style="margin-top:14px;font-size:13px;color:var(--parchment);opacity:0.85">
-           <strong style="color:var(--gold)">Series returned by the API:</strong><br>
+           <strong style="color:var(--gold)">Series sample:</strong>
            <em>${diag.sampleSeries.map(esc).join(" · ")}</em>
          </p>`
       : "";
     const errs = diag.errors?.length
-      ? `<p style="color:#e88;font-size:12px">Endpoint errors: ${diag.errors.map(esc).join(" · ")}</p>`
+      ? `<p style="color:#e88;font-size:12px">${diag.errors.map(esc).join(" · ")}</p>`
       : "";
+    const sub = diag.mode === "feed"
+      ? `Shared feed last refreshed ${diag.generatedAt ? fmt.date(Date.parse(diag.generatedAt)) : "never"}.
+         The cron may not have run yet, or the IPL window is closed.`
+      : `Live API returned ${diag.totalRaw} match${diag.totalRaw === 1 ? "" : "es"}
+         (${diag.fromGeneral || 0} general · ${diag.fromSeries || 0} via series search) — none matched the IPL filter.`;
+    const action = diag.mode === "feed"
+      ? `<button class="btn btn-ghost" id="reloadFeedInline">Reload Feed</button>
+         <a href="#/settings" class="btn btn-primary">Open Settings</a>`
+      : `<button class="btn btn-primary" id="showAllInline">Show All Cricket</button>`;
     return `
       <div class="empty-state">
         <div class="ico">🏟</div>
         <h3>No IPL fixtures right now</h3>
-        <p>The API returned ${diag.totalRaw} match${diag.totalRaw === 1 ? "" : "es"}
-           (${diag.fromGeneral} general · ${diag.fromSeries} via IPL series search) — none matched the IPL filter.</p>
+        <p>${sub}</p>
         ${series}
         ${errs}
-        <p style="margin-top:18px">
-          <button class="btn btn-primary" id="showAllInline">Show All Cricket</button>
-        </p>
+        <p style="margin-top:18px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">${action}</p>
       </div>
+    `;
+  }
+
+  function renderFeedStatus(feed) {
+    const el = $("#feedStatus");
+    if (!el || !feed) return;
+    if (!feed.generatedAt) {
+      el.innerHTML = `<em>The shared feed has not been built yet. Run the GitHub Action manually or wait for the next cron tick.</em>`;
+      return;
+    }
+    const c = feed.counts || {};
+    const ago = Math.round((Date.now() - Date.parse(feed.generatedAt)) / 60000);
+    el.innerHTML = `
+      <strong>Shared feed:</strong>
+      ${c.total ?? feed.matches?.length ?? 0} matches
+      (${c.live || 0} live · ${c.upcoming || 0} upcoming · ${c.completed || 0} completed)
+      · refreshed ${ago} min ago
+      ${feed.series ? `· series: <em>${esc(feed.series.name)}</em>` : ""}
+      ${feed.errors?.length ? `<br><span style="color:var(--maroon)">soft errors: ${feed.errors.map(esc).join("; ")}</span>` : ""}
     `;
   }
 
@@ -569,13 +590,14 @@
   async function gradeOne(id) {
     const c = Store.getContest(id);
     if (!c) return;
-    if (!Api.hasKey()) { toast("Add an API key to fetch results", "error"); return; }
     toast("Fetching match result…");
     try {
       const info = await Api.matchInfo(c.matchId, { force: true });
       const result = Contests.extractResult(info, c);
       if (!result || (!result.winner && !result.toss)) {
-        toast("Match not yet settled — try after the game ends.", "error");
+        toast(Api.hasUserKey()
+          ? "Match not yet settled — try after the game ends."
+          : "Result not in the shared feed yet. Cron refreshes every 30 min.", "error");
         return;
       }
       const updated = Contests.settle(id, result);
@@ -701,20 +723,22 @@
       </div>
 
       <div class="panel">
-        <h3>CricAPI</h3>
+        <h3>Data Source</h3>
         <p style="margin-top:0;color:var(--ink-soft);font-style:italic">
-          Get a free key at <a href="https://cricapi.com" target="_blank" rel="noopener">cricapi.com</a> (≈100 calls/day on free tier).
-          The key is stored only in your browser.
+          By default, fixtures come from the shared feed (<code>data/feed.json</code>) refreshed every 30 minutes by GitHub Actions.
+          No key required. Optionally, paste a personal CricAPI key to bypass the feed and pull live data on demand.
         </p>
         <div class="form-row">
-          <label>API Key</label>
-          <input type="password" id="apiKey" value="${esc(s.apiKey || "")}" placeholder="paste your CricAPI key">
+          <label>Personal CricAPI Key (optional)</label>
+          <input type="password" id="apiKey" value="${esc(s.apiKey || "")}" placeholder="leave blank to use the shared feed">
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn btn-primary" id="saveApi">Save Key</button>
-          <button class="btn btn-ghost" id="testApi">Test Connection</button>
-          <button class="btn btn-dark" id="clearCache">Clear API Cache</button>
+          <button class="btn btn-primary" id="saveApi">Save</button>
+          <button class="btn btn-ghost" id="testApi">Test Live Mode</button>
+          <button class="btn btn-dark" id="clearCache">Clear Cache</button>
+          <button class="btn btn-dark" id="reloadFeed">Reload Feed</button>
         </div>
+        <div id="feedStatus" style="margin-top:14px;font-size:13px;color:var(--ink-soft)"></div>
       </div>
 
       <div class="panel">
@@ -758,6 +782,18 @@
       matchCache = null;
       toast("Cache cleared", "success");
     });
+    $("#reloadFeed").addEventListener("click", async () => {
+      try {
+        const feed = await Api.loadFeed({ force: true });
+        matchCache = null;
+        toast(`Feed reloaded · ${feed.matches?.length || 0} matches`, "success");
+        renderFeedStatus(feed);
+      } catch (e) {
+        toast(`Feed error: ${e.message}`, "error");
+      }
+    });
+    // Show feed metadata on load
+    Api.loadFeed().then(renderFeedStatus).catch(() => {});
     $("#wipeAll").addEventListener("click", () => {
       if (!confirm("This will erase your contests, history, and wallet. Continue?")) return;
       const apiKey = Store.getSettings().apiKey;
