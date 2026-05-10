@@ -59,35 +59,51 @@ const Api = (() => {
 
   // ---- public surface ------------------------------------------------------
 
-  // Combined list: current + upcoming, deduped by id, optionally unfiltered.
-  // Returns { matches, ipl, all } so the UI can fall back to "all cricket"
-  // when no IPL is in season.
+  // Combined list: tries three sources in parallel — current matches, upcoming
+  // matches, and series_info for the most recent IPL series. Dedupes by id.
+  // includeAll=true skips the IPL filter so the UI can show all cricket.
   async function listMatches({ force = false, includeAll = false } = {}) {
+    // Kick off both general feeds + a series-based pull in parallel.
+    const seriesPromise = (async () => {
+      try {
+        const s = await findIplSeries();
+        if (!s?.id) return [];
+        const j = await call("series_info", { id: s.id }, { ttl: TTL_MATCHLIST, force });
+        const list = j.data?.matchList || j.data?.matches || [];
+        // series_info matches lack `series` field — backfill so isIpl matches
+        return list.map(m => ({ ...m, series: m.series || s.name || "Indian Premier League" }));
+      } catch { return []; }
+    })();
+
     const sources = await Promise.all([
       call("currentMatches", { offset: 0 }, { ttl: TTL_MATCHLIST, force }).catch(e => ({ _err: e })),
-      call("matches",        { offset: 0 }, { ttl: TTL_MATCHLIST, force }).catch(e => ({ _err: e }))
+      call("matches",        { offset: 0 }, { ttl: TTL_MATCHLIST, force }).catch(e => ({ _err: e })),
+      seriesPromise
     ]);
-    const errs = sources.filter(s => s._err).map(s => s._err.message);
-    const raw  = sources.filter(s => !s._err).flatMap(s => s.data || []);
+    const errs = sources.slice(0, 2).filter(s => s._err).map(s => s._err.message);
+    const fromGeneral = sources.slice(0, 2).filter(s => !s._err).flatMap(s => s.data || []);
+    const fromSeries  = sources[2] || [];
+
     const dedup = new Map();
-    for (const m of raw) if (m.id) dedup.set(m.id, m);
+    for (const m of [...fromGeneral, ...fromSeries]) if (m.id) dedup.set(m.id, m);
     const all = [...dedup.values()];
-    const ipl = all.filter(isIpl);
+
+    // Anything from the series pull is IPL by definition.
+    const seriesIds = new Set(fromSeries.map(m => m.id));
+    const ipl = all.filter(m => seriesIds.has(m.id) || isIpl(m));
 
     lastDiagnostics = {
       totalRaw: all.length,
+      fromGeneral: fromGeneral.length,
+      fromSeries: fromSeries.length,
       iplFound: ipl.length,
       sampleSeries: [...new Set(all.map(m => m.series).filter(Boolean))].slice(0, 8),
       errors: errs
     };
 
-    const chosen = (includeAll || ipl.length === 0 && includeAll) ? all : ipl;
-    const out = (includeAll ? all : ipl).map(normaliseMatch);
-    // Throw a helpful error only when we got nothing back at all
-    if (!out.length && all.length === 0 && errs.length) {
-      throw new Error(errs[0]);
-    }
-    return out;
+    const chosen = includeAll ? all : ipl;
+    if (!chosen.length && all.length === 0 && errs.length) throw new Error(errs[0]);
+    return chosen.map(normaliseMatch);
   }
 
   async function matchInfo(matchId, { force = false } = {}) {

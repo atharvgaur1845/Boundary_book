@@ -174,18 +174,22 @@
 
   function noIplState(diag) {
     const series = diag.sampleSeries.length
-      ? `<p style="margin-top:14px;font-size:13px;color:var(--parchment);opacity:0.75">
-           Returned series sample:<br>
+      ? `<p style="margin-top:14px;font-size:13px;color:var(--parchment);opacity:0.85">
+           <strong style="color:var(--gold)">Series returned by the API:</strong><br>
            <em>${diag.sampleSeries.map(esc).join(" · ")}</em>
          </p>`
+      : "";
+    const errs = diag.errors?.length
+      ? `<p style="color:#e88;font-size:12px">Endpoint errors: ${diag.errors.map(esc).join(" · ")}</p>`
       : "";
     return `
       <div class="empty-state">
         <div class="ico">🏟</div>
         <h3>No IPL fixtures right now</h3>
-        <p>The API answered with ${diag.totalRaw} match${diag.totalRaw === 1 ? "" : "es"} but none look like IPL.
-           This usually means the IPL window is closed for the day or the season hasn't started.</p>
+        <p>The API returned ${diag.totalRaw} match${diag.totalRaw === 1 ? "" : "es"}
+           (${diag.fromGeneral} general · ${diag.fromSeries} via IPL series search) — none matched the IPL filter.</p>
         ${series}
+        ${errs}
         <p style="margin-top:18px">
           <button class="btn btn-primary" id="showAllInline">Show All Cricket</button>
         </p>
