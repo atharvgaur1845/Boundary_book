@@ -128,11 +128,11 @@
   window.addEventListener("hashchange", route);
   function route() {
     const m = (location.hash || "#/matches").replace(/^#\//, "");
-    const [base, sub] = m.split("/");
+    const [base, sub, tok] = m.split("/");
     if (base === "join" && sub) {
       currentRoute = "join";
       $$("a", NAV).forEach(a => a.classList.toggle("active", false));
-      renderJoin(sub);
+      renderJoin(sub, tok);
       return;
     }
     const r = ROUTES.includes(base) ? base : "matches";
@@ -547,7 +547,7 @@
           renderContests();
         } else if (isJoin) {
           toast("Joining contest…");
-          const updated = await Contests.joinShared(mode.contestId, preds);
+          const updated = await Contests.joinShared(mode.contestId, preds, mode.tokenOverride);
           closeModal();
           toast(`Joined · ${fmt.money(updated.entry)} debited`, "success");
           refreshWallet();
@@ -812,7 +812,8 @@
     });
   }
 
-  async function renderJoin(contestId) {
+  async function renderJoin(contestId, encodedToken) {
+    const tokenOverride = encodedToken ? GithubStore.decodeToken(encodedToken) : null;
     VIEW.innerHTML = `<div class="panel"><p style="color:var(--ink-soft)">Loading contest…</p></div>`;
     try {
       const c = await GithubStore.read(contestId);
@@ -875,7 +876,7 @@
             startMs: c.startsAt, venue: "", squads: null
           };
           const tier = { entry: c.entry, size: c.size, label: c.tierLabel };
-          openBetBuilder({ kind: "join", match: matchShape, tier, contestId });
+          openBetBuilder({ kind: "join", match: matchShape, tier, contestId, tokenOverride });
         });
       }
     } catch (e) {

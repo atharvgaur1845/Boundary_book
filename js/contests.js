@@ -314,7 +314,7 @@ const Contests = (() => {
     return c;
   }
 
-  async function joinShared(contestId, userPredictions) {
+  async function joinShared(contestId, userPredictions, tokenOverride) {
     const profile = Store.ensureProfile();
     const c = await GithubStore.read(contestId);
 
@@ -333,7 +333,7 @@ const Contests = (() => {
       joinedAt: Date.now()
     });
 
-    await GithubStore.write(c);
+    await GithubStore.write(c, tokenOverride);
     Store.adjustBalance(-c.entry);
 
     const existing = Store.getContest(contestId);

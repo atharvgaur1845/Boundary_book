@@ -12,12 +12,23 @@ const GithubStore = (() => {
     return Store.getSettings().githubToken || "";
   }
 
+  function encodeToken(t) {
+    return btoa(t).replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
+  }
+
+  function decodeToken(s) {
+    const pad = s.length % 4 ? "=".repeat(4 - s.length % 4) : "";
+    return atob(s.replace(/-/g, "+").replace(/_/g, "/") + pad);
+  }
+
   function contestPath(id) {
     return `${DIR}/${id}.json`;
   }
 
   function shareUrl(id) {
-    return location.href.split("#")[0] + "#/join/" + id;
+    const tok = token();
+    const base = location.href.split("#")[0] + "#/join/" + id;
+    return tok ? base + "/" + encodeToken(tok) : base;
   }
 
   async function read(contestId) {
@@ -28,8 +39,8 @@ const GithubStore = (() => {
     return res.json();
   }
 
-  async function write(data) {
-    const tok = token();
+  async function write(data, tokenOverride) {
+    const tok = tokenOverride || token();
     if (!tok) throw new Error("No GitHub token — set it in Settings → Shared Contests.");
 
     const path = contestPath(data.id);
@@ -70,5 +81,5 @@ const GithubStore = (() => {
     return data;
   }
 
-  return { read, write, shareUrl, contestPath };
+  return { read, write, shareUrl, contestPath, decodeToken };
 })();
