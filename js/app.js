@@ -128,7 +128,14 @@
   window.addEventListener("hashchange", route);
   function route() {
     const m = (location.hash || "#/matches").replace(/^#\//, "");
-    const r = ROUTES.includes(m) ? m : "matches";
+    const [base, sub] = m.split("/");
+    if (base === "join" && sub) {
+      currentRoute = "join";
+      $$("a", NAV).forEach(a => a.classList.toggle("active", false));
+      renderJoin(sub);
+      return;
+    }
+    const r = ROUTES.includes(base) ? base : "matches";
     currentRoute = r;
     $$("a", NAV).forEach(a => a.classList.toggle("active", a.dataset.route === r));
     render();
@@ -445,8 +452,11 @@
       ? `Picks lock <strong>${fmt.time(match.startMs - Contests.LOCK_BUFFER_MS)}</strong> (${fmt.day(match.startMs - Contests.LOCK_BUFFER_MS)}) — about 30 min before listed start.`
       : `Picks remain editable until the toss begins.`;
 
+    const isJoin = mode.kind === "join";
+    const confirmLabel = isEdit ? "Save Picks" : isJoin ? "Join Contest" : "Play Solo";
+
     openModal({
-      title: (isEdit ? "Edit Picks · " : "") + `${tier.label} — ${match.teamA} vs ${match.teamB}`,
+      title: (isEdit ? "Edit Picks · " : isJoin ? "Join · " : "") + `${tier.label} — ${match.teamA} vs ${match.teamB}`,
       body: `
         <div class="contest-summary">
           <div class="stat"><div class="stat-label">Entry</div><div class="stat-value">${fmt.money(tier.entry)}</div></div>
@@ -455,7 +465,7 @@
           <div class="stat"><div class="stat-label">Top win</div><div class="stat-value">${fmt.money(tier.entry * tier.size * (PAYOUT_SCHEDULES[tier.size]?.[0] || 0))}</div></div>
         </div>
         <p style="font-style:italic;color:var(--text-3);margin-top:0">
-          ${isEdit ? "Adjust your picks freely until the toss." : "Make your call on each parameter below. Points score on accuracy; the pool pays by rank."}
+          ${isEdit ? "Adjust your picks freely until the toss." : isJoin ? "Make your picks to join your friends' contest." : "Make your call on each parameter below. Points score on accuracy; the pool pays by rank."}
           <br><span style="color:var(--accent-2)">${lockHint}</span>
         </p>
         <div style="margin-bottom:14px">${squadSourceTag}</div>
@@ -463,9 +473,10 @@
       `,
       foot: `
         <button class="btn btn-ghost" id="autoFillBtn">Suggest Picks</button>
-        <div style="display:flex;gap:8px">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn btn-dark" data-close="1">Cancel</button>
-          <button class="btn btn-primary" id="confirmBet">${isEdit ? "Save Picks" : "Place Contest"}</button>
+          ${!isEdit && !isJoin ? `<button class="btn btn-ghost" id="shareContestBtn">Share with Friends</button>` : ""}
+          <button class="btn btn-primary" id="confirmBet">${confirmLabel}</button>
         </div>
       `
     });
@@ -519,19 +530,28 @@
       }
     });
 
-    $("#confirmBet").addEventListener("click", () => {
+    $("#confirmBet").addEventListener("click", async () => {
       const preds = collectPredictions();
       const missing = BET_TYPES.filter(b => !preds[b.key]);
       if (missing.length) {
         toast(`Make picks for: ${missing.map(b => b.label).join(", ")}`, "error");
         return;
       }
+      const btn = $("#confirmBet");
+      btn.disabled = true;
       try {
         if (isEdit) {
           Contests.updatePicks(c.id, preds);
           closeModal();
           toast("Picks updated", "success");
           renderContests();
+        } else if (isJoin) {
+          toast("Joining contest…");
+          const updated = await Contests.joinShared(mode.contestId, preds);
+          closeModal();
+          toast(`Joined · ${fmt.money(updated.entry)} debited`, "success");
+          refreshWallet();
+          location.hash = "#/contests";
         } else {
           Contests.create(match, tier, preds);
           closeModal();
@@ -541,8 +561,35 @@
         }
       } catch (e) {
         toast(e.message, "error");
+        btn.disabled = false;
       }
     });
+
+    const shareBtn = $("#shareContestBtn");
+    if (shareBtn) {
+      shareBtn.addEventListener("click", async () => {
+        const preds = collectPredictions();
+        const missing = BET_TYPES.filter(b => !preds[b.key]);
+        if (missing.length) {
+          toast(`Make picks for: ${missing.map(b => b.label).join(", ")}`, "error");
+          return;
+        }
+        shareBtn.disabled = true;
+        shareBtn.textContent = "Creating…";
+        try {
+          const created = await Contests.createShared(match, tier, preds);
+          closeModal();
+          refreshWallet();
+          toast("Shared contest created!", "success");
+          location.hash = "#/contests";
+          setTimeout(() => showShareModal(created), 300);
+        } catch (e) {
+          toast(e.message, "error");
+          shareBtn.disabled = false;
+          shareBtn.textContent = "Share with Friends";
+        }
+      });
+    }
   }
 
   function collectPredictions() {
@@ -594,6 +641,9 @@
     $$("#contestList [data-cancel]").forEach(b =>
       b.addEventListener("click", () => cancelContest(b.dataset.cancel))
     );
+    $$("#contestList [data-share]").forEach(b =>
+      b.addEventListener("click", () => showShareModal(Store.getContest(b.dataset.share)))
+    );
   }
 
   function lockBadge(c) {
@@ -617,22 +667,26 @@
   function openContestRow(c) {
     const top = c.schedule[0] || 0;
     const locked = Contests.isLocked(c);
+    const seats = c.isShared
+      ? `${(c.participants || []).length} / ${c.size} joined`
+      : `${c.size} seats`;
     return `
       <div class="panel">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
           <div>
-            <h3 style="margin-bottom:2px">${esc(c.matchLabel)}</h3>
+            <h3 style="margin-bottom:2px">${esc(c.matchLabel)}${c.isShared ? ' <span class="tag pending" style="font-size:11px;vertical-align:middle">SHARED</span>' : ""}</h3>
             <div class="meta" style="color:var(--ink-soft);font-style:italic">
-              ${esc(c.tierLabel)} · ${c.size} seats · placed ${fmt.date(c.createdAt)}
+              ${esc(c.tierLabel)} · ${seats} · placed ${fmt.date(c.createdAt)}
               ${c.lastEditedAt ? ` · edited ${fmt.date(c.lastEditedAt)}` : ""}
             </div>
           </div>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             ${lockBadge(c)}
+            ${c.isShared ? `<button class="btn btn-ghost" data-share="${c.id}">Share Link</button>` : ""}
             ${locked
               ? `<button class="btn btn-dark" data-view="${c.id}">View Picks</button>
                  <button class="btn btn-primary" data-grade="${c.id}">Grade</button>`
-              : `<button class="btn btn-primary" data-edit="${c.id}">Edit Picks</button>
+              : `${!c.isShared ? `<button class="btn btn-primary" data-edit="${c.id}">Edit Picks</button>` : ""}
                  <button class="btn btn-dark" data-view="${c.id}">View</button>
                  <button class="btn btn-danger" data-cancel="${c.id}">Withdraw</button>`
             }
@@ -662,13 +716,33 @@
   function viewContest(id) {
     const c = Store.getContest(id);
     if (!c) return;
+
+    const profile = Store.ensureProfile();
+    const myPicks = c.isShared
+      ? (c.participants || []).find(p => p.userId === profile.userId)?.predictions || {}
+      : (c.userPredictions || {});
+
     const rows = BET_TYPES.map(b => `
       <tr>
         <td>${esc(b.label)}</td>
-        <td>${esc(displayPick(b, c.userPredictions[b.key]))}</td>
+        <td>${esc(displayPick(b, myPicks[b.key]))}</td>
         <td style="text-align:right;color:var(--ink-soft)">${b.points} pts</td>
       </tr>
     `).join("");
+
+    let participantsHtml = "";
+    if (c.isShared && (c.participants || []).length) {
+      const pRows = c.participants.map(p => `
+        <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);font-size:13px">
+          <span>${esc(p.name)}${p.userId === profile.userId ? ' <span class="tag pending">YOU</span>' : ""}${p.isCreator ? ' <span class="tag" style="background:var(--gold);color:#000">Host</span>' : ""}</span>
+          <span style="color:var(--ink-soft)">${fmt.date(p.joinedAt)}</span>
+        </div>
+      `).join("");
+      participantsHtml = `
+        <h3 style="font-family:'Cormorant Garamond',serif;color:var(--navy);font-size:18px;margin-top:20px">
+          Participants (${c.participants.length} / ${c.size})
+        </h3>${pRows}`;
+    }
 
     let resultHtml = "";
     if (c.status === "settled" && c.ranking) {
@@ -678,8 +752,9 @@
     openModal({
       title: c.matchLabel,
       body: `
-        <p style="margin-top:0;color:var(--ink-soft);font-style:italic">${esc(c.tierLabel)} · pool ${fmt.money(c.pool)}</p>
-        <h3 style="font-family:'Cormorant Garamond',serif;color:var(--navy);font-size:18px">Your picks</h3>
+        <p style="margin-top:0;color:var(--ink-soft);font-style:italic">${esc(c.tierLabel)} · pool ${fmt.money(c.pool)}${c.isShared ? " · Shared" : ""}</p>
+        ${participantsHtml}
+        <h3 style="font-family:'Cormorant Garamond',serif;color:var(--navy);font-size:18px;margin-top:20px">Your picks</h3>
         <table><thead><tr><th>Parameter</th><th>Pick</th><th style="text-align:right">Weight</th></tr></thead><tbody>${rows}</tbody></table>
         ${resultHtml}
       `,
@@ -715,6 +790,99 @@
     return value;
   }
 
+  function showShareModal(c) {
+    const url = GithubStore.shareUrl(c.id);
+    openModal({
+      title: "Share Contest Link",
+      body: `
+        <p style="margin-top:0;color:var(--ink-soft);font-style:italic">
+          Send this link to your friends. Each person needs to open it, make their picks, and join.
+          <br>Seats: <strong>${c.participants?.length || 1} / ${c.size}</strong> filled.
+        </p>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <input type="text" id="shareUrlInput" value="${esc(url)}" readonly
+            style="flex:1;min-width:0;font-size:13px;font-family:monospace">
+          <button class="btn btn-primary" id="copyShareUrl">Copy</button>
+        </div>
+      `,
+      foot: `<button class="btn btn-dark" data-close="1">Done</button>`
+    });
+    $("#copyShareUrl").addEventListener("click", () => {
+      navigator.clipboard.writeText(url).then(() => toast("Link copied!", "success"));
+    });
+  }
+
+  async function renderJoin(contestId) {
+    VIEW.innerHTML = `<div class="panel"><p style="color:var(--ink-soft)">Loading contest…</p></div>`;
+    try {
+      const c = await GithubStore.read(contestId);
+      if (!c) {
+        VIEW.innerHTML = emptyState("Contest Not Found",
+          "This link may be invalid or the contest was removed.", "?");
+        return;
+      }
+
+      const profile = Store.ensureProfile();
+      const alreadyJoined = (c.participants || []).some(p => p.userId === profile.userId);
+      const full = (c.participants || []).length >= c.size;
+      const locked = Contests.isLocked(c);
+
+      const participantRows = (c.participants || []).map(p => `
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)">
+          <span>${esc(p.name)}${p.isCreator ? ' <span class="tag pending">Host</span>' : ""}</span>
+          <span style="color:var(--ink-soft);font-size:12px">${fmt.date(p.joinedAt)}</span>
+        </div>
+      `).join("");
+
+      VIEW.innerHTML = `
+        <div class="section-head">
+          <div>
+            <h2>${esc(c.matchLabel)}</h2>
+            <div class="meta">${esc(c.tierLabel)} · Shared Contest</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="contest-summary">
+            <div class="stat"><div class="stat-label">Entry</div><div class="stat-value">${fmt.money(c.entry)}</div></div>
+            <div class="stat"><div class="stat-label">Seats</div><div class="stat-value">${(c.participants||[]).length} / ${c.size}</div></div>
+            <div class="stat"><div class="stat-label">Prize Pool</div><div class="stat-value">${fmt.money(c.pool)}</div></div>
+            <div class="stat"><div class="stat-label">Match</div><div class="stat-value" style="font-size:15px">${esc(fmt.day(c.startsAt))}</div></div>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--navy);margin-top:20px">Participants</h3>
+          <div>${participantRows || '<p style="color:var(--ink-soft)">No one has joined yet.</p>'}</div>
+          <div style="margin-top:20px">
+            ${alreadyJoined
+              ? `<p class="tag pending">You have already joined this contest.</p>
+                 <a href="#/contests" class="btn btn-dark" style="margin-top:8px">My Contests</a>`
+              : full
+                ? `<p class="tag loss">All seats are filled.</p>`
+                : locked
+                  ? `<p class="tag loss">Picks are locked — toss has begun.</p>`
+                  : `<button class="btn btn-primary" id="joinNowBtn">Make Picks &amp; Join</button>`
+            }
+          </div>
+        </div>
+      `;
+
+      const joinBtn = $("#joinNowBtn");
+      if (joinBtn) {
+        joinBtn.addEventListener("click", async () => {
+          // Need match shape for the bet builder
+          const matchShape = {
+            id: c.matchId,
+            teamA: c.teamA, teamB: c.teamB,
+            teamACode: c.teamACode, teamBCode: c.teamBCode,
+            startMs: c.startsAt, venue: "", squads: null
+          };
+          const tier = { entry: c.entry, size: c.size, label: c.tierLabel };
+          openBetBuilder({ kind: "join", match: matchShape, tier, contestId });
+        });
+      }
+    } catch (e) {
+      VIEW.innerHTML = emptyState("Error Loading Contest", esc(e.message), "!");
+    }
+  }
+
   function cancelContest(id) {
     const c = Store.getContest(id);
     if (!c) return;
@@ -741,12 +909,14 @@
           : "Result not in the shared feed yet. Cron refreshes every 30 min.", "error");
         return;
       }
-      const updated = Contests.settle(id, result);
+      const updated = c.isShared
+        ? await Contests.settleShared(id, result)
+        : Contests.settle(id, result);
       const me = updated.ranking.find(r => r.isUser);
-      const verdict = me.payout >= c.entry
+      const verdict = me?.payout >= c.entry
         ? `Finished #${me.rank} · won ${fmt.money(me.payout)}`
-        : `Finished #${me.rank} · no payout`;
-      toast(verdict, me.payout >= c.entry ? "success" : "error");
+        : `Finished #${me?.rank || "?"} · no payout`;
+      toast(verdict, me?.payout >= c.entry ? "success" : "error");
       refreshWallet();
       renderContests();
     } catch (e) {
@@ -763,7 +933,8 @@
         const info = await Api.matchInfo(c.matchId, { force: true });
         const result = Contests.extractResult(info, c);
         if (result && (result.winner || result.toss)) {
-          Contests.settle(c.id, result);
+          if (c.isShared) await Contests.settleShared(c.id, result);
+          else Contests.settle(c.id, result);
           graded++;
         }
       } catch (e) { /* skip */ }
@@ -883,6 +1054,22 @@
       </div>
 
       <div class="panel">
+        <h3>Shared Contests</h3>
+        <p style="margin-top:0;color:var(--ink-soft);font-style:italic">
+          To create or join shared contests (real friends, not bots), paste a GitHub Personal Access Token with
+          <code>Contents: Write</code> permission on this repo. Everyone in the group can use the same token.
+          <br><br>
+          Create one at <strong>GitHub → Settings → Developer settings → Fine-grained tokens</strong>.
+          Set repository access to <em>atharvgaur1845/Boundary_book</em>, grant <em>Contents: Read & Write</em>.
+        </p>
+        <div class="form-row">
+          <label>GitHub Token</label>
+          <input type="password" id="githubToken" value="${esc(s.githubToken || "")}" placeholder="github_pat_…">
+        </div>
+        <button class="btn btn-primary" id="saveGithubToken">Save Token</button>
+      </div>
+
+      <div class="panel">
         <h3>Data</h3>
         <p style="margin-top:0;color:var(--ink-soft);font-style:italic">
           Wipe all local contests, history, and the wallet. The API key is preserved.
@@ -935,6 +1122,10 @@
     });
     // Show feed metadata on load
     Api.loadFeed().then(renderFeedStatus).catch(() => {});
+    $("#saveGithubToken").addEventListener("click", () => {
+      Store.setSettings({ githubToken: $("#githubToken").value.trim() });
+      toast("GitHub token saved", "success");
+    });
     $("#wipeAll").addEventListener("click", () => {
       if (!confirm("This will erase your contests, history, and wallet. Continue?")) return;
       const apiKey = Store.getSettings().apiKey;

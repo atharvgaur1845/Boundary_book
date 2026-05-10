@@ -272,6 +272,112 @@ const Contests = (() => {
     return Store.updateContest(contestId, { userPredictions: predictions, lastEditedAt: Date.now() });
   }
 
+  // -- shared contests (GitHub-backed) ---------------------------------------
+
+  async function createShared(match, tier, userPredictions) {
+    const profile = Store.ensureProfile();
+    if (profile.balance < tier.entry) throw new Error("Insufficient balance.");
+
+    const pool = tier.entry * tier.size;
+    const c = {
+      id: uid(),
+      matchId: match.id,
+      matchLabel: `${match.teamA} vs ${match.teamB}`,
+      teamA: match.teamA,
+      teamB: match.teamB,
+      teamACode: match.teamACode,
+      teamBCode: match.teamBCode,
+      startsAt: match.startMs,
+      tierLabel: tier.label,
+      entry: tier.entry,
+      size: tier.size,
+      pool,
+      schedule: PAYOUT_SCHEDULES[tier.size] || PAYOUT_SCHEDULES[3],
+      participants: [{
+        userId: profile.userId,
+        name: profile.name,
+        predictions: userPredictions,
+        joinedAt: Date.now(),
+        isCreator: true
+      }],
+      isShared: true,
+      status: "open",
+      result: null,
+      ranking: null,
+      createdAt: Date.now(),
+      settledAt: null
+    };
+
+    await GithubStore.write(c);
+    Store.adjustBalance(-tier.entry);
+    Store.addContest(c);
+    return c;
+  }
+
+  async function joinShared(contestId, userPredictions) {
+    const profile = Store.ensureProfile();
+    const c = await GithubStore.read(contestId);
+
+    if (!c) throw new Error("Contest not found. Check the link.");
+    if (c.status !== "open") throw new Error("This contest is already settled.");
+    if (c.participants.length >= c.size) throw new Error("All seats are filled.");
+    if (c.participants.some(p => p.userId === profile.userId))
+      throw new Error("You have already joined this contest.");
+    if (profile.balance < c.entry) throw new Error("Insufficient balance.");
+    if (isLocked(c)) throw new Error("Picks are locked — toss has begun.");
+
+    c.participants.push({
+      userId: profile.userId,
+      name: profile.name,
+      predictions: userPredictions,
+      joinedAt: Date.now()
+    });
+
+    await GithubStore.write(c);
+    Store.adjustBalance(-c.entry);
+
+    const existing = Store.getContest(contestId);
+    if (existing) Store.updateContest(contestId, c);
+    else Store.addContest(c);
+
+    return c;
+  }
+
+  async function settleShared(contestId, result) {
+    const c = await GithubStore.read(contestId);
+    if (!c) throw new Error("Contest not found on GitHub.");
+    if (c.status === "settled") {
+      Store.updateContest(contestId, c);
+      return c;
+    }
+
+    const profile = Store.ensureProfile();
+    const entries = c.participants.map((p, i) => {
+      const s = score(p.predictions, result);
+      return { name: p.name, isUser: p.userId === profile.userId,
+               points: s.points, breakdown: s.breakdown, _idx: i };
+    });
+
+    entries.sort((a, b) => (b.points - a.points) || (a._idx - b._idx));
+
+    let userPayout = 0;
+    entries.forEach((e, rank) => {
+      const pct = c.schedule[rank] || 0;
+      e.payout = Math.round(c.pool * pct);
+      e.rank = rank + 1;
+      delete e._idx;
+      if (e.isUser) userPayout = e.payout;
+    });
+
+    if (userPayout > 0) Store.adjustBalance(userPayout);
+
+    const updated = { ...c, status: "settled", result, ranking: entries, settledAt: Date.now() };
+    await GithubStore.write(updated);
+    Store.updateContest(contestId, updated);
+    return updated;
+  }
+
   return { create, settle, score, extractResult, stats, randomPredictions,
-           lockAt, isLocked, msUntilLock, updatePicks, LOCK_BUFFER_MS };
+           lockAt, isLocked, msUntilLock, updatePicks, LOCK_BUFFER_MS,
+           createShared, joinShared, settleShared };
 })();

@@ -36,8 +36,11 @@ const Store = (() => {
     let p = getProfile();
     if (!p) {
       p = { name: "Guest", balance: STARTING_BALANCE, createdAt: Date.now() };
-      setProfile(p);
     }
+    if (!p.userId) {
+      p.userId = "u_" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+    }
+    setProfile(p);
     return p;
   }
 
@@ -99,7 +102,7 @@ const Store = (() => {
 
   // ----- settings -----------------------------------------------------------
   function getSettings() {
-    return get(KEYS.settings, { apiKey: "", autoGrade: true });
+    return get(KEYS.settings, { apiKey: "", autoGrade: true, githubToken: "" });
   }
   function setSettings(s) { set(KEYS.settings, { ...getSettings(), ...s }); }
 
