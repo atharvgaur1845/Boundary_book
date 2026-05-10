@@ -1,15 +1,22 @@
 /* Boundary Book — CricAPI v1 wrapper.
-   - Free tier is rate-limited (~100 calls/day) so we cache aggressively.
-   - All endpoints take an apikey query param.
-   - We filter results to IPL-only client-side, since search support is patchy. */
+   - Free tier rate-limited (~100 calls/day) so we cache aggressively.
+   - We pull from BOTH /currentMatches (live + recent) AND /matches (upcoming)
+     because /currentMatches alone often has nothing during the IPL off-season
+     window or between match days.
+   - IPL filter is broad (matches series id, series name, team names) and the
+     UI exposes a "Show all cricket" toggle when nothing IPL-shaped is found. */
 
 const Api = (() => {
   const BASE = "https://api.cricapi.com/v1";
   const TTL_MATCHLIST = 30 * 60 * 1000;  // 30 min
-  const TTL_MATCHINFO = 60 * 1000;        // 1 min for live, longer if completed (handled below)
+  const TTL_MATCHINFO = 60 * 1000;
+  const TTL_SERIES    = 6 * 60 * 60 * 1000;
+
+  let lastDiagnostics = null;
 
   function key() { return (Store.getSettings().apiKey || "").trim(); }
   function hasKey() { return !!key(); }
+  function getDiagnostics() { return lastDiagnostics; }
 
   async function call(path, params = {}, { ttl = 0, cacheKey = null, force = false } = {}) {
     const k = key();
@@ -30,34 +37,74 @@ const Api = (() => {
     return j;
   }
 
-  // ---- IPL filter helpers --------------------------------------------------
-  const IPL_NAMES = ["indian premier league", "ipl"];
+  // ---- IPL detection -------------------------------------------------------
+  // Match anything that smells like the IPL: series name, match name, team
+  // names against our roster. Keeps false positives low without being brittle.
+  const IPL_SERIES_RX = /\b(indian premier league|ipl)\b/i;
+  const IPL_TEAM_KEYWORDS = Object.values(IPL_TEAMS).flatMap(t => [
+    t.name.toLowerCase(),
+    t.short.toLowerCase()
+  ]);
+
   function isIpl(m) {
-    const s = (m.series || m.name || "").toLowerCase();
-    return IPL_NAMES.some(n => s.includes(n));
+    const fields = [m.series, m.name, m.matchType].filter(Boolean).join(" ").toLowerCase();
+    if (IPL_SERIES_RX.test(fields)) return true;
+    const teamStr = (m.teams || []).join(" ").toLowerCase();
+    let hits = 0;
+    for (const kw of IPL_TEAM_KEYWORDS) {
+      if (teamStr.includes(kw)) { hits++; if (hits >= 2) return true; }
+    }
+    return false;
   }
 
   // ---- public surface ------------------------------------------------------
 
-  // List currently scheduled / live / recently-finished matches.
-  // CricAPI returns mixed cricket worldwide; we filter to IPL.
-  async function listMatches({ force = false } = {}) {
-    const j = await call("currentMatches", { offset: 0 }, { ttl: TTL_MATCHLIST, force });
-    const all = (j.data || []).filter(isIpl);
-    return all.map(normaliseMatch);
+  // Combined list: current + upcoming, deduped by id, optionally unfiltered.
+  // Returns { matches, ipl, all } so the UI can fall back to "all cricket"
+  // when no IPL is in season.
+  async function listMatches({ force = false, includeAll = false } = {}) {
+    const sources = await Promise.all([
+      call("currentMatches", { offset: 0 }, { ttl: TTL_MATCHLIST, force }).catch(e => ({ _err: e })),
+      call("matches",        { offset: 0 }, { ttl: TTL_MATCHLIST, force }).catch(e => ({ _err: e }))
+    ]);
+    const errs = sources.filter(s => s._err).map(s => s._err.message);
+    const raw  = sources.filter(s => !s._err).flatMap(s => s.data || []);
+    const dedup = new Map();
+    for (const m of raw) if (m.id) dedup.set(m.id, m);
+    const all = [...dedup.values()];
+    const ipl = all.filter(isIpl);
+
+    lastDiagnostics = {
+      totalRaw: all.length,
+      iplFound: ipl.length,
+      sampleSeries: [...new Set(all.map(m => m.series).filter(Boolean))].slice(0, 8),
+      errors: errs
+    };
+
+    const chosen = (includeAll || ipl.length === 0 && includeAll) ? all : ipl;
+    const out = (includeAll ? all : ipl).map(normaliseMatch);
+    // Throw a helpful error only when we got nothing back at all
+    if (!out.length && all.length === 0 && errs.length) {
+      throw new Error(errs[0]);
+    }
+    return out;
   }
 
-  // Match info — full scorecard if available.
   async function matchInfo(matchId, { force = false } = {}) {
-    // Completed matches: cache long. Live/upcoming: short cache so re-grading reflects updates.
     const j = await call("match_info", { id: matchId }, { ttl: TTL_MATCHINFO, force });
     return j.data || null;
   }
 
-  // Score endpoint (light; useful for quick status polling)
   async function scores() {
     const j = await call("cricScore", {}, { ttl: TTL_MATCHINFO });
     return (j.data || []).filter(isIpl);
+  }
+
+  // Find the active IPL series id via /series search; useful for series-info pulls.
+  async function findIplSeries() {
+    const j = await call("series", { offset: 0, search: "Indian Premier League" },
+                         { ttl: TTL_SERIES });
+    return (j.data || [])[0] || null;
   }
 
   // ---- shape normalisation -------------------------------------------------
@@ -73,9 +120,10 @@ const Api = (() => {
       teamACode: codeFor(teamA, tInfo),
       teamBCode: codeFor(teamB, tInfo),
       venue: m.venue || "",
+      series: m.series || "",
       startISO,
       startMs: startISO ? Date.parse(startISO) : 0,
-      status,                     // upcoming | live | completed
+      status,
       raw: m
     };
   }
@@ -83,7 +131,6 @@ const Api = (() => {
   function codeFor(name, tInfo) {
     if (!name) return "";
     if (tInfo[name]?.shortname) return tInfo[name].shortname;
-    // Fall back to a guess against our IPL_TEAMS table
     const lc = name.toLowerCase();
     for (const [code, t] of Object.entries(IPL_TEAMS)) {
       if (lc.includes(t.short.toLowerCase()) || lc.includes(t.name.toLowerCase())) return code;
@@ -97,5 +144,6 @@ const Api = (() => {
     return "upcoming";
   }
 
-  return { hasKey, listMatches, matchInfo, scores, normaliseMatch };
+  return { hasKey, listMatches, matchInfo, scores, findIplSeries,
+           normaliseMatch, getDiagnostics };
 })();

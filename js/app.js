@@ -113,15 +113,19 @@
 
   let matchCache = null;
   let dateFilter = "all"; // YYYY-MM-DD or "all"
+  let showAllCricket = false;
 
   async function renderMatches({ force = false } = {}) {
     VIEW.innerHTML = `
       <div class="section-head">
         <div>
           <h2>Today's Card</h2>
-          <div class="meta">IPL fixtures · live & upcoming</div>
+          <div class="meta">${showAllCricket ? "All cricket · live & upcoming" : "IPL fixtures · live & upcoming"}</div>
         </div>
         <div class="actions">
+          <button class="btn ${showAllCricket ? "btn-primary" : "btn-ghost"}" id="toggleAll">
+            ${showAllCricket ? "Showing All" : "IPL Only"}
+          </button>
           <button class="btn btn-ghost" id="refreshMatches">Refresh</button>
         </div>
       </div>
@@ -129,6 +133,11 @@
       <div id="matchArea"></div>
     `;
     $("#refreshMatches").addEventListener("click", () => renderMatches({ force: true }));
+    $("#toggleAll").addEventListener("click", () => {
+      showAllCricket = !showAllCricket;
+      matchCache = null;
+      renderMatches({ force: true });
+    });
 
     const area = $("#matchArea");
     if (!Api.hasKey()) {
@@ -141,7 +150,19 @@
 
     area.innerHTML = `<div class="spinner"></div>`;
     try {
-      if (force || !matchCache) matchCache = await Api.listMatches({ force });
+      if (force || !matchCache) {
+        matchCache = await Api.listMatches({ force, includeAll: showAllCricket });
+      }
+      const diag = Api.getDiagnostics();
+      if (!matchCache.length && !showAllCricket && diag) {
+        // No IPL matches, but the API responded. Show what's actually out there.
+        area.innerHTML = noIplState(diag);
+        $("#dateStrip").innerHTML = "";
+        $("#showAllInline")?.addEventListener("click", () => {
+          showAllCricket = true; matchCache = null; renderMatches({ force: true });
+        });
+        return;
+      }
       renderDateStrip(matchCache);
       renderMatchCards(matchCache);
     } catch (e) {
@@ -149,6 +170,27 @@
         esc(e.message) + " — verify your API key in Settings or try again later.",
         "⚠");
     }
+  }
+
+  function noIplState(diag) {
+    const series = diag.sampleSeries.length
+      ? `<p style="margin-top:14px;font-size:13px;color:var(--parchment);opacity:0.75">
+           Returned series sample:<br>
+           <em>${diag.sampleSeries.map(esc).join(" · ")}</em>
+         </p>`
+      : "";
+    return `
+      <div class="empty-state">
+        <div class="ico">🏟</div>
+        <h3>No IPL fixtures right now</h3>
+        <p>The API answered with ${diag.totalRaw} match${diag.totalRaw === 1 ? "" : "es"} but none look like IPL.
+           This usually means the IPL window is closed for the day or the season hasn't started.</p>
+        ${series}
+        <p style="margin-top:18px">
+          <button class="btn btn-primary" id="showAllInline">Show All Cricket</button>
+        </p>
+      </div>
+    `;
   }
 
   function renderDateStrip(matches) {
