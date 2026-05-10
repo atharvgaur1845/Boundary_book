@@ -2,8 +2,8 @@ name: Fetch IPL feed
 
 on:
   schedule:
-    - cron: '*/30 * * * *'   # every 30 min
-  workflow_dispatch:           # manual trigger from the Actions tab
+    - cron: '0 * * * *'       # every hour (delta cache keeps API calls low)
+  workflow_dispatch:            # manual trigger from the Actions tab
 
 permissions:
   contents: write              # needed to commit data/feed.json back to the repo

@@ -28,10 +28,18 @@
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   }[ch]));
 
-  function teamBadge(name, code) {
+  function teamBadge(name, code, logoUrl) {
     const t = IPL_TEAMS[code] || { color: "#1c3556", text: "#f4ecd8", short: name || "?" };
     const initials = (t.code || (name || "?").slice(0, 3)).toUpperCase();
-    return `<div class="team-badge" style="background:${t.color};color:${t.text}">${esc(initials)}</div>`;
+    const initialsHtml = `<span class="badge-initials" style="background:${t.color};color:${t.text}">${esc(initials)}</span>`;
+    if (logoUrl) {
+      return `<div class="team-badge has-img">
+        ${initialsHtml}
+        <img src="${esc(logoUrl)}" alt="${esc(name)}" loading="lazy"
+             onerror="this.remove(); this.parentElement.classList.remove('has-img');" />
+      </div>`;
+    }
+    return `<div class="team-badge">${initialsHtml}</div>`;
   }
 
   // ------------------------------------------------------------- toast
@@ -80,10 +88,35 @@
 
   // ---------------------------------------------------------- wallet header
 
+  let _displayedBalance = 0;
   function refreshWallet() {
     const p = Store.ensureProfile();
     WALLET_NAME.textContent = p.name;
-    WALLET_BAL.textContent = Math.round(p.balance).toLocaleString("en-IN");
+    const target = Math.round(p.balance);
+    if (target !== _displayedBalance) {
+      tickerTo(WALLET_BAL, _displayedBalance, target, 600);
+      const wrap = WALLET_BAL.parentElement;
+      wrap.classList.add("bump");
+      setTimeout(() => wrap.classList.remove("bump"), 280);
+      _displayedBalance = target;
+    } else {
+      WALLET_BAL.textContent = target.toLocaleString("en-IN");
+    }
+  }
+
+  // Animated count-up ticker for the wallet balance
+  function tickerTo(el, from, to, duration = 600) {
+    const start = performance.now();
+    const delta = to - from;
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      // ease-out cubic
+      const k = 1 - Math.pow(1 - t, 3);
+      const v = Math.round(from + delta * k);
+      el.textContent = v.toLocaleString("en-IN");
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   }
 
   $("#wallet").addEventListener("click", () => {
@@ -140,7 +173,7 @@
     });
 
     const area = $("#matchArea");
-    area.innerHTML = `<div class="spinner"></div>`;
+    area.innerHTML = skeletonGrid(6);
     try {
       if (force || !matchCache) {
         matchCache = await Api.listMatches({ force, includeAll: showAllCricket });
@@ -261,30 +294,34 @@
       return;
     }
     filtered.sort((a, b) => (a.startMs || 0) - (b.startMs || 0));
-    $("#matchArea").innerHTML = `<div class="match-grid">${filtered.map(matchCard).join("")}</div>`;
+    $("#matchArea").innerHTML = `<div class="match-grid">${filtered.map((m, i) => matchCard(m, i)).join("")}</div>`;
     $$("#matchArea .match-card").forEach(c => {
       c.addEventListener("click", () => onMatchClick(c.dataset.id));
     });
   }
 
-  function matchCard(m) {
+  function skeletonGrid(n = 6) {
+    return `<div class="skeleton-grid">${Array.from({ length: n }, () => `<div class="skel"></div>`).join("")}</div>`;
+  }
+
+  function matchCard(m, i = 0) {
     const statusLbl = m.status === "live" ? "LIVE" : m.status === "completed" ? "COMPLETED" : "UPCOMING";
     const time = m.startMs ? fmt.time(m.startMs) : "TBA";
     const dayStr = m.startMs ? fmt.day(m.startMs) : "";
     return `
-      <div class="match-card" data-id="${esc(m.id)}">
+      <div class="match-card" data-id="${esc(m.id)}" style="animation-delay:${i * 50}ms">
         <div class="mc-head">
           <span>${esc(dayStr)} · ${esc(time)}</span>
           <span class="mc-status ${m.status}">${statusLbl}</span>
         </div>
         <div class="mc-teams">
           <div class="team-block">
-            ${teamBadge(m.teamA, m.teamACode)}
+            ${teamBadge(m.teamA, m.teamACode, m.teamALogo)}
             <div class="team-name">${esc(m.teamA)}</div>
           </div>
           <div class="vs-divider">vs</div>
           <div class="team-block">
-            ${teamBadge(m.teamB, m.teamBCode)}
+            ${teamBadge(m.teamB, m.teamBCode, m.teamBLogo)}
             <div class="team-name">${esc(m.teamB)}</div>
           </div>
         </div>
@@ -340,12 +377,45 @@
 
   // ============================================================ BET BUILDER
 
-  function openBetBuilder(match, tier) {
+  // mode: { kind: "create", match, tier }  OR  { kind: "edit", contest }
+  function openBetBuilder(arg1, arg2) {
+    // Backwards-compat: if called with (match, tier) treat as create
+    let mode;
+    if (arg1 && arg1.kind) mode = arg1;
+    else mode = { kind: "create", match: arg1, tier: arg2 };
+
+    const isEdit = mode.kind === "edit";
+    const c = isEdit ? mode.contest : null;
+
+    // Synthesize the match-shape needed by the builder
+    const match = isEdit
+      ? { teamA: c.teamA, teamB: c.teamB, teamACode: c.teamACode, teamBCode: c.teamBCode,
+          startMs: c.startsAt, venue: "", id: c.matchId }
+      : mode.match;
+    const tier = isEdit
+      ? { entry: c.entry, size: c.size, label: c.tierLabel }
+      : mode.tier;
+    const existing = isEdit ? c.userPredictions : null;
+
     const codeA = match.teamACode, codeB = match.teamBCode;
-    const squad = [...(SQUADS[codeA] || []), ...(SQUADS[codeB] || [])];
+    // Prefer the playing-15 returned by /match_squad; fall back to our static
+    // marquee list. Group players by team in the dropdown for clarity.
+    const liveA = match.squads?.[match.teamA]?.map(p => p.name) || null;
+    const liveB = match.squads?.[match.teamB]?.map(p => p.name) || null;
+    const squadA = liveA || (SQUADS[codeA] || []);
+    const squadB = liveB || (SQUADS[codeB] || []);
+    const squadSourceTag = (liveA && liveB)
+      ? `<span class="squad-tag live">Playing-15 announced</span>`
+      : `<span class="squad-tag stale">Indicative squads (lineup not yet announced)</span>`;
     const teamOpts = [match.teamA, match.teamB].map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
-    const playerOpts = squad.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join("")
-                     + `<option value="__custom__">Other (type below)…</option>`;
+    const playerOpts =
+      `<optgroup label="${esc(match.teamA)}">` +
+        squadA.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join("") +
+      `</optgroup>` +
+      `<optgroup label="${esc(match.teamB)}">` +
+        squadB.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join("") +
+      `</optgroup>` +
+      `<option value="__custom__">Other (type below)…</option>`;
 
     const tiles = BET_TYPES.map(b => {
       let body = "";
@@ -371,8 +441,12 @@
       `;
     }).join("");
 
+    const lockHint = match.startMs
+      ? `Picks lock <strong>${fmt.time(match.startMs - Contests.LOCK_BUFFER_MS)}</strong> (${fmt.day(match.startMs - Contests.LOCK_BUFFER_MS)}) — about 30 min before listed start.`
+      : `Picks remain editable until the toss begins.`;
+
     openModal({
-      title: `${tier.label} — ${match.teamA} vs ${match.teamB}`,
+      title: (isEdit ? "Edit Picks · " : "") + `${tier.label} — ${match.teamA} vs ${match.teamB}`,
       body: `
         <div class="contest-summary">
           <div class="stat"><div class="stat-label">Entry</div><div class="stat-value">${fmt.money(tier.entry)}</div></div>
@@ -380,19 +454,41 @@
           <div class="stat"><div class="stat-label">Prize Pool</div><div class="stat-value">${fmt.money(tier.entry * tier.size)}</div></div>
           <div class="stat"><div class="stat-label">Top win</div><div class="stat-value">${fmt.money(tier.entry * tier.size * (PAYOUT_SCHEDULES[tier.size]?.[0] || 0))}</div></div>
         </div>
-        <p style="font-style:italic;color:var(--ink-soft);margin-top:0">
-          Make your call on each parameter below. Points score on accuracy; the pool pays by rank.
+        <p style="font-style:italic;color:var(--text-3);margin-top:0">
+          ${isEdit ? "Adjust your picks freely until the toss." : "Make your call on each parameter below. Points score on accuracy; the pool pays by rank."}
+          <br><span style="color:var(--accent-2)">${lockHint}</span>
         </p>
+        <div style="margin-bottom:14px">${squadSourceTag}</div>
         <div class="bet-grid" id="betGrid">${tiles}</div>
       `,
       foot: `
         <button class="btn btn-ghost" id="autoFillBtn">Suggest Picks</button>
         <div style="display:flex;gap:8px">
           <button class="btn btn-dark" data-close="1">Cancel</button>
-          <button class="btn btn-primary" id="confirmBet">Place Contest</button>
+          <button class="btn btn-primary" id="confirmBet">${isEdit ? "Save Picks" : "Place Contest"}</button>
         </div>
       `
     });
+
+    // Pre-fill existing picks (edit mode)
+    if (existing) {
+      for (const [k, v] of Object.entries(existing)) {
+        const sel = $(`#betGrid select[data-bet="${k}"]`);
+        if (!sel) continue;
+        if (sel.dataset.player === "1") {
+          const opt = Array.from(sel.options).find(o => o.value === v);
+          if (opt) sel.value = v;
+          else {
+            sel.value = "__custom__";
+            const c2 = sel.parentElement.querySelector("input[data-bet-custom]");
+            c2.style.display = "block";
+            c2.value = v;
+          }
+        } else {
+          sel.value = v;
+        }
+      }
+    }
 
     // Player select with "Custom" toggle
     $$('#betGrid select[data-player="1"]').forEach(sel => {
@@ -431,11 +527,18 @@
         return;
       }
       try {
-        const c = Contests.create(match, tier, preds);
-        closeModal();
-        toast(`Contest placed · ${fmt.money(tier.entry)} debited`, "success");
-        refreshWallet();
-        location.hash = "#/contests";
+        if (isEdit) {
+          Contests.updatePicks(c.id, preds);
+          closeModal();
+          toast("Picks updated", "success");
+          renderContests();
+        } else {
+          Contests.create(match, tier, preds);
+          closeModal();
+          toast(`Contest placed · ${fmt.money(tier.entry)} debited`, "success");
+          refreshWallet();
+          location.hash = "#/contests";
+        }
       } catch (e) {
         toast(e.message, "error");
       }
@@ -485,13 +588,35 @@
     $$("#contestList [data-view]").forEach(b =>
       b.addEventListener("click", () => viewContest(b.dataset.view))
     );
+    $$("#contestList [data-edit]").forEach(b =>
+      b.addEventListener("click", () => editContestPicks(b.dataset.edit))
+    );
     $$("#contestList [data-cancel]").forEach(b =>
       b.addEventListener("click", () => cancelContest(b.dataset.cancel))
     );
   }
 
+  function lockBadge(c) {
+    if (Contests.isLocked(c)) {
+      return `<span class="tag loss" title="Picks locked at toss">🔒 LOCKED</span>`;
+    }
+    const ms = Contests.msUntilLock(c);
+    if (!ms) return `<span class="tag pending">Editable</span>`;
+    return `<span class="tag pending" title="Picks lock 30 min before match">✎ ${formatDuration(ms)} to lock</span>`;
+  }
+
+  function formatDuration(ms) {
+    const m = Math.floor(ms / 60000);
+    if (m < 60) return `${m}m`;
+    const h = Math.floor(m / 60);
+    if (h < 24) return `${h}h ${m % 60}m`;
+    const d = Math.floor(h / 24);
+    return `${d}d ${h % 24}h`;
+  }
+
   function openContestRow(c) {
     const top = c.schedule[0] || 0;
+    const locked = Contests.isLocked(c);
     return `
       <div class="panel">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
@@ -499,13 +624,18 @@
             <h3 style="margin-bottom:2px">${esc(c.matchLabel)}</h3>
             <div class="meta" style="color:var(--ink-soft);font-style:italic">
               ${esc(c.tierLabel)} · ${c.size} seats · placed ${fmt.date(c.createdAt)}
+              ${c.lastEditedAt ? ` · edited ${fmt.date(c.lastEditedAt)}` : ""}
             </div>
           </div>
-          <div style="display:flex;gap:8px;align-items:center">
-            <span class="tag pending">Pending</span>
-            <button class="btn btn-dark" data-view="${c.id}">View Picks</button>
-            <button class="btn btn-primary" data-grade="${c.id}">Grade</button>
-            <button class="btn btn-danger" data-cancel="${c.id}">Withdraw</button>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            ${lockBadge(c)}
+            ${locked
+              ? `<button class="btn btn-dark" data-view="${c.id}">View Picks</button>
+                 <button class="btn btn-primary" data-grade="${c.id}">Grade</button>`
+              : `<button class="btn btn-primary" data-edit="${c.id}">Edit Picks</button>
+                 <button class="btn btn-dark" data-view="${c.id}">View</button>
+                 <button class="btn btn-danger" data-cancel="${c.id}">Withdraw</button>`
+            }
           </div>
         </div>
         <div class="contest-summary" style="margin-top:14px">
@@ -516,6 +646,17 @@
         </div>
       </div>
     `;
+  }
+
+  function editContestPicks(id) {
+    const c = Store.getContest(id);
+    if (!c) return;
+    if (Contests.isLocked(c)) {
+      toast("Picks have already locked.", "error");
+      renderContests();
+      return;
+    }
+    openBetBuilder({ kind: "edit", contest: c });
   }
 
   function viewContest(id) {

@@ -63,8 +63,11 @@ const Contests = (() => {
     const codeA = match.teamACode, codeB = match.teamBCode;
     const teams = [match.teamA, match.teamB];
     const pickTeam = () => teams[Math.random() < 0.5 ? 0 : 1];
-    const squadA = SQUADS[codeA] || [];
-    const squadB = SQUADS[codeB] || [];
+    // Prefer the live playing-15; fall back to indicative SQUADS
+    const liveA = match.squads?.[match.teamA]?.map(p => p.name);
+    const liveB = match.squads?.[match.teamB]?.map(p => p.name);
+    const squadA = liveA || SQUADS[codeA] || [];
+    const squadB = liveB || SQUADS[codeB] || [];
     const allPlayers = [...squadA, ...squadB];
     const pickPlayer = () => allPlayers.length
       ? allPlayers[Math.floor(Math.random() * allPlayers.length)]
@@ -237,5 +240,38 @@ const Contests = (() => {
     };
   }
 
-  return { create, settle, score, extractResult, stats, randomPredictions };
+  // -- pick-lock window ------------------------------------------------------
+  // Picks lock 30 min before listed match start (tosses typically happen then).
+  const LOCK_BUFFER_MS = 30 * 60 * 1000;
+
+  function lockAt(contest) {
+    if (!contest?.startsAt) return 0;
+    return contest.startsAt - LOCK_BUFFER_MS;
+  }
+
+  function isLocked(contest) {
+    if (!contest) return true;
+    if (contest.status === "settled") return true;
+    const la = lockAt(contest);
+    if (!la) return false;          // unknown start time -> stay editable
+    return Date.now() >= la;
+  }
+
+  function msUntilLock(contest) {
+    return Math.max(0, lockAt(contest) - Date.now());
+  }
+
+  // Update the user's picks. Throws if the contest has already locked.
+  function updatePicks(contestId, predictions) {
+    const c = Store.getContest(contestId);
+    if (!c) throw new Error("Contest not found.");
+    if (isLocked(c)) throw new Error("Picks are locked — toss has begun.");
+    // Validate every bet has a value
+    const missing = BET_TYPES.filter(b => !predictions[b.key]);
+    if (missing.length) throw new Error("Missing picks: " + missing.map(b => b.label).join(", "));
+    return Store.updateContest(contestId, { userPredictions: predictions, lastEditedAt: Date.now() });
+  }
+
+  return { create, settle, score, extractResult, stats, randomPredictions,
+           lockAt, isLocked, msUntilLock, updatePicks, LOCK_BUFFER_MS };
 })();

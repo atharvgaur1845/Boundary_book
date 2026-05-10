@@ -170,6 +170,9 @@ const Api = (() => {
       teamA, teamB,
       teamACode: codeFor(teamA, tInfo),
       teamBCode: codeFor(teamB, tInfo),
+      teamALogo: tInfo[teamA]?.img || "",
+      teamBLogo: tInfo[teamB]?.img || "",
+      squads: m.squads || null,                 // { [teamName]: [{name, role, ...}] }
       venue: m.venue || "",
       series: m.series || "",
       startISO,
