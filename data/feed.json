@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-11T15:18:19.408Z",
+  "generatedAt": "2026-05-11T19:52:45.404Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 54,
+    "live": 0,
+    "completed": 55,
     "upcoming": 19,
-    "withScorecard": 48,
+    "withScorecard": 51,
     "withSquads": 11
   },
-  "apiCalls": 7,
+  "apiCalls": 6,
   "errors": [],
   "matches": [
     {
@@ -3831,7 +3831,55 @@
       "hasSquad": true,
       "matchStarted": true,
       "matchEnded": true,
-      "series": "Indian Premier League 2026"
+      "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "312ba6aa-5e93-4673-bb0c-cb207fdc9e2d",
+        "name": "Sunrisers Hyderabad vs Punjab Kings, 49th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Sunrisers Hyderabad won by 33 runs",
+        "venue": "Rajiv Gandhi International Stadium, Hyderabad",
+        "date": "2026-05-06",
+        "dateTimeGMT": "2026-05-06T14:00:00",
+        "teams": [
+          "Sunrisers Hyderabad",
+          "Punjab Kings"
+        ],
+        "teamInfo": [
+          {
+            "name": "Punjab Kings",
+            "shortname": "PBKS",
+            "img": "https://g.cricapi.com/iapi/247-637852956959778791.png?w=48"
+          },
+          {
+            "name": "Sunrisers Hyderabad",
+            "shortname": "SRH",
+            "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 235,
+            "w": 4,
+            "o": 20,
+            "inning": "Sunrisers Hyderabad Inning 1"
+          },
+          {
+            "r": 202,
+            "w": 7,
+            "o": 20,
+            "inning": "Punjab Kings Inning 1"
+          }
+        ],
+        "tossWinner": "punjab kings",
+        "tossChoice": "bowl",
+        "matchWinner": "Sunrisers Hyderabad",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": true
+      }
     },
     {
       "id": "8b326da3-8ff6-4e64-abe4-cb430d7a6c53",
@@ -3862,7 +3910,55 @@
       "hasSquad": true,
       "matchStarted": true,
       "matchEnded": true,
-      "series": "Indian Premier League 2026"
+      "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "8b326da3-8ff6-4e64-abe4-cb430d7a6c53",
+        "name": "Lucknow Super Giants vs Royal Challengers Bengaluru, 50th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "LSG won by 9 runs (19 Overs game due to rain, DLS Target 213)",
+        "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+        "date": "2026-05-07",
+        "dateTimeGMT": "2026-05-07T14:00:00",
+        "teams": [
+          "Lucknow Super Giants",
+          "Royal Challengers Bengaluru"
+        ],
+        "teamInfo": [
+          {
+            "name": "Lucknow Super Giants",
+            "shortname": "LSG",
+            "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
+          },
+          {
+            "name": "Royal Challengers Bengaluru",
+            "shortname": "RCBW",
+            "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 209,
+            "w": 3,
+            "o": 19,
+            "inning": "Lucknow Super Giants Inning 1"
+          },
+          {
+            "r": 203,
+            "w": 6,
+            "o": 19,
+            "inning": "Royal Challengers Bengaluru Inning 1"
+          }
+        ],
+        "tossWinner": "royal challengers bengaluru",
+        "tossChoice": "bowl",
+        "matchWinner": "LSG",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": true
+      }
     },
     {
       "id": "90d5c075-3c9a-40b7-ab45-80a36a3a2351",
@@ -3893,7 +3989,55 @@
       "hasSquad": true,
       "matchStarted": true,
       "matchEnded": true,
-      "series": "Indian Premier League 2026"
+      "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "90d5c075-3c9a-40b7-ab45-80a36a3a2351",
+        "name": "Delhi Capitals vs Kolkata Knight Riders, 51st Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Kolkata Knight Riders won by 8 wkts",
+        "venue": "Arun Jaitley Stadium, Delhi",
+        "date": "2026-05-08",
+        "dateTimeGMT": "2026-05-08T14:00:00",
+        "teams": [
+          "Delhi Capitals",
+          "Kolkata Knight Riders"
+        ],
+        "teamInfo": [
+          {
+            "name": "Delhi Capitals",
+            "shortname": "DC",
+            "img": "https://g.cricapi.com/iapi/148-637874596301457910.png?w=48"
+          },
+          {
+            "name": "Kolkata Knight Riders",
+            "shortname": "KKR",
+            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 142,
+            "w": 8,
+            "o": 20,
+            "inning": "Delhi Capitals Inning 1"
+          },
+          {
+            "r": 147,
+            "w": 2,
+            "o": 14.2,
+            "inning": "Kolkata Knight Riders Inning 1"
+          }
+        ],
+        "tossWinner": "kolkata knight riders",
+        "tossChoice": "bowl",
+        "matchWinner": "Kolkata Knight Riders",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": true
+      }
     },
     {
       "id": "6ffec712-6562-490c-a4fa-ae4b6ae59188",
@@ -4616,7 +4760,7 @@
       "id": "ee5ab0d9-acd2-42bf-b5bc-f4d287e0f434",
       "name": "Punjab Kings vs Delhi Capitals, 55th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Strategic Timeout - Delhi Capitals opt to bowl",
+      "status": "Delhi Capitals won by 3 wkts",
       "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
       "date": "2026-05-11",
       "dateTimeGMT": "2026-05-11T14:00:00",
@@ -4640,7 +4784,7 @@
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
       "squads": {
         "Delhi Capitals": [
