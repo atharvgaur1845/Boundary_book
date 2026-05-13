@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-13T14:42:19.381Z",
+  "generatedAt": "2026-05-13T17:19:48.432Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -13,7 +13,7 @@
     "withScorecard": 57,
     "withSquads": 13
   },
-  "apiCalls": 5,
+  "apiCalls": 4,
   "errors": [],
   "matches": [
     {
@@ -5691,7 +5691,7 @@
       "id": "0b3bab15-12b2-4a16-9f41-1096e40ff202",
       "name": "Royal Challengers Bengaluru vs Kolkata Knight Riders, 57th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Toss delayed due to wet outfield",
+      "status": "Royal Challengers Bengaluru need 156 runs",
       "venue": "Shaheed Veer Narayan Singh International Stadium, Raipur",
       "date": "2026-05-13",
       "dateTimeGMT": "2026-05-13T14:00:00",
@@ -5711,7 +5711,7 @@
           "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
@@ -6039,7 +6039,7 @@
         "id": "0b3bab15-12b2-4a16-9f41-1096e40ff202",
         "name": "Royal Challengers Bengaluru vs Kolkata Knight Riders, 57th Match, Indian Premier League 2026",
         "matchType": "t20",
-        "status": "Toss delayed due to wet outfield",
+        "status": "Royal Challengers Bengaluru need 156 runs",
         "venue": "Shaheed Veer Narayan Singh International Stadium, Raipur",
         "date": "2026-05-13",
         "dateTimeGMT": "2026-05-13T14:00:00",
@@ -6059,8 +6059,24 @@
             "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
           }
         ],
+        "score": [
+          {
+            "r": 192,
+            "w": 4,
+            "o": 20,
+            "inning": "Kolkata Knight Riders Inning 1"
+          },
+          {
+            "r": 37,
+            "w": 1,
+            "o": 3.2,
+            "inning": "Royal Challengers Bengaluru Inning 1"
+          }
+        ],
+        "tossWinner": "royal challengers bengaluru",
+        "tossChoice": "bowl",
         "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": false,
+        "fantasyEnabled": true,
         "bbbEnabled": false,
         "hasSquad": true,
         "matchStarted": true,
