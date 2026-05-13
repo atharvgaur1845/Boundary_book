@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-13T17:19:48.432Z",
+  "generatedAt": "2026-05-13T20:00:13.024Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 56,
+    "live": 0,
+    "completed": 57,
     "upcoming": 17,
     "withScorecard": 57,
     "withSquads": 13
   },
-  "apiCalls": 4,
+  "apiCalls": 3,
   "errors": [],
   "matches": [
     {
@@ -4142,6 +4142,21 @@
           "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 203,
+          "w": 8,
+          "o": 20,
+          "inning": "Lucknow Super Giants Inning 1"
+        },
+        {
+          "r": 208,
+          "w": 5,
+          "o": 19.2,
+          "inning": "Chennai Super Kings Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -4539,6 +4554,21 @@
           "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 166,
+          "w": 7,
+          "o": 20,
+          "inning": "Mumbai Indians Inning 1"
+        },
+        {
+          "r": 167,
+          "w": 8,
+          "o": 20,
+          "inning": "Royal Challengers Bengaluru Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -4924,6 +4954,21 @@
           "img": "https://g.cricapi.com/iapi/247-637852956959778791.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 210,
+          "w": 5,
+          "o": 20,
+          "inning": "Punjab Kings Inning 1"
+        },
+        {
+          "r": 216,
+          "w": 7,
+          "o": 19,
+          "inning": "Delhi Capitals Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -5309,6 +5354,21 @@
           "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 168,
+          "w": 5,
+          "o": 20,
+          "inning": "Gujarat Titans Inning 1"
+        },
+        {
+          "r": 86,
+          "w": 10,
+          "o": 14.5,
+          "inning": "Sunrisers Hyderabad Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -5691,7 +5751,7 @@
       "id": "0b3bab15-12b2-4a16-9f41-1096e40ff202",
       "name": "Royal Challengers Bengaluru vs Kolkata Knight Riders, 57th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Royal Challengers Bengaluru need 156 runs",
+      "status": "Royal Challengers Bengaluru won by 6 wkts",
       "venue": "Shaheed Veer Narayan Singh International Stadium, Raipur",
       "date": "2026-05-13",
       "dateTimeGMT": "2026-05-13T14:00:00",
@@ -5711,12 +5771,74 @@
           "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 192,
+          "w": 4,
+          "o": 20,
+          "inning": "Kolkata Knight Riders Inning 1"
+        },
+        {
+          "r": 194,
+          "w": 4,
+          "o": 19.1,
+          "inning": "Royal Challengers Bengaluru Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "0b3bab15-12b2-4a16-9f41-1096e40ff202",
+        "name": "Royal Challengers Bengaluru vs Kolkata Knight Riders, 57th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Royal Challengers Bengaluru need 156 runs",
+        "venue": "Shaheed Veer Narayan Singh International Stadium, Raipur",
+        "date": "2026-05-13",
+        "dateTimeGMT": "2026-05-13T14:00:00",
+        "teams": [
+          "Royal Challengers Bengaluru",
+          "Kolkata Knight Riders"
+        ],
+        "teamInfo": [
+          {
+            "name": "Kolkata Knight Riders",
+            "shortname": "KKR",
+            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
+          },
+          {
+            "name": "Royal Challengers Bengaluru",
+            "shortname": "RCBW",
+            "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 192,
+            "w": 4,
+            "o": 20,
+            "inning": "Kolkata Knight Riders Inning 1"
+          },
+          {
+            "r": 37,
+            "w": 1,
+            "o": 3.2,
+            "inning": "Royal Challengers Bengaluru Inning 1"
+          }
+        ],
+        "tossWinner": "royal challengers bengaluru",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Kolkata Knight Riders": [
           {
@@ -6034,53 +6156,6 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "0b3bab15-12b2-4a16-9f41-1096e40ff202",
-        "name": "Royal Challengers Bengaluru vs Kolkata Knight Riders, 57th Match, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Royal Challengers Bengaluru need 156 runs",
-        "venue": "Shaheed Veer Narayan Singh International Stadium, Raipur",
-        "date": "2026-05-13",
-        "dateTimeGMT": "2026-05-13T14:00:00",
-        "teams": [
-          "Royal Challengers Bengaluru",
-          "Kolkata Knight Riders"
-        ],
-        "teamInfo": [
-          {
-            "name": "Kolkata Knight Riders",
-            "shortname": "KKR",
-            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
-          },
-          {
-            "name": "Royal Challengers Bengaluru",
-            "shortname": "RCBW",
-            "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 192,
-            "w": 4,
-            "o": 20,
-            "inning": "Kolkata Knight Riders Inning 1"
-          },
-          {
-            "r": 37,
-            "w": 1,
-            "o": 3.2,
-            "inning": "Royal Challengers Bengaluru Inning 1"
-          }
-        ],
-        "tossWinner": "royal challengers bengaluru",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
