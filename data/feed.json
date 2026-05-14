@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-14T14:22:25.533Z",
+  "generatedAt": "2026-05-14T17:03:02.546Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -13,7 +13,7 @@
     "withScorecard": 58,
     "withSquads": 14
   },
-  "apiCalls": 5,
+  "apiCalls": 4,
   "errors": [],
   "matches": [
     {
@@ -6147,7 +6147,7 @@
       "id": "6666db12-b9cc-49f0-b3af-5628fc8c53fa",
       "name": "Punjab Kings vs Mumbai Indians, 58th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Mumbai Indians opt to bowl",
+      "status": "Mumbai Indians need 172 runs",
       "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
       "date": "2026-05-14",
       "dateTimeGMT": "2026-05-14T14:00:00",
@@ -6169,10 +6169,16 @@
       ],
       "score": [
         {
-          "r": 0,
-          "w": 0,
-          "o": 0.1,
+          "r": 200,
+          "w": 8,
+          "o": 20,
           "inning": "Punjab Kings Inning 1"
+        },
+        {
+          "r": 29,
+          "w": 0,
+          "o": 3.1,
+          "inning": "Mumbai Indians Inning 1"
         }
       ],
       "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -6492,7 +6498,7 @@
         "id": "6666db12-b9cc-49f0-b3af-5628fc8c53fa",
         "name": "Punjab Kings vs Mumbai Indians, 58th Match, Indian Premier League 2026",
         "matchType": "t20",
-        "status": "Mumbai Indians opt to bowl",
+        "status": "Mumbai Indians need 172 runs",
         "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
         "date": "2026-05-14",
         "dateTimeGMT": "2026-05-14T14:00:00",
@@ -6514,10 +6520,16 @@
         ],
         "score": [
           {
-            "r": 0,
-            "w": 0,
-            "o": 0.1,
+            "r": 200,
+            "w": 8,
+            "o": 20,
             "inning": "Punjab Kings Inning 1"
+          },
+          {
+            "r": 29,
+            "w": 0,
+            "o": 3.1,
+            "inning": "Mumbai Indians Inning 1"
           }
         ],
         "tossWinner": "mumbai indians",
