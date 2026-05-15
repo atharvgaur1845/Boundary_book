@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-15T16:53:07.069Z",
+  "generatedAt": "2026-05-15T19:42:55.448Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 58,
+    "live": 0,
+    "completed": 59,
     "upcoming": 15,
     "withScorecard": 59,
     "withSquads": 15
   },
-  "apiCalls": 4,
+  "apiCalls": 3,
   "errors": [],
   "matches": [
     {
@@ -4924,21 +4924,6 @@
           "img": "https://g.cricapi.com/iapi/247-637852956959778791.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 210,
-          "w": 5,
-          "o": 20,
-          "inning": "Punjab Kings Inning 1"
-        },
-        {
-          "r": 216,
-          "w": 7,
-          "o": 19,
-          "inning": "Delhi Capitals Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -6531,7 +6516,7 @@
       "id": "68746b1f-d4b0-4f0a-a46a-46a1946aae32",
       "name": "Lucknow Super Giants vs Chennai Super Kings, 59th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Lucknow Super Giants need 102 runs in 84 balls",
+      "status": "Lucknow Super Giants won by 7 wkts",
       "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
       "date": "2026-05-15",
       "dateTimeGMT": "2026-05-15T14:00:00",
@@ -6559,9 +6544,9 @@
           "inning": "Chennai Super Kings Inning 1"
         },
         {
-          "r": 86,
-          "w": 0,
-          "o": 6,
+          "r": 188,
+          "w": 3,
+          "o": 16.4,
           "inning": "Lucknow Super Giants Inning 1"
         }
       ],
@@ -6570,8 +6555,55 @@
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "68746b1f-d4b0-4f0a-a46a-46a1946aae32",
+        "name": "Lucknow Super Giants vs Chennai Super Kings, 59th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Lucknow Super Giants need 102 runs in 84 balls",
+        "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+        "date": "2026-05-15",
+        "dateTimeGMT": "2026-05-15T14:00:00",
+        "teams": [
+          "Lucknow Super Giants",
+          "Chennai Super Kings"
+        ],
+        "teamInfo": [
+          {
+            "name": "Chennai Super Kings",
+            "shortname": "CSK",
+            "img": "https://g.cricapi.com/iapi/135-637852956181378533.png?w=48"
+          },
+          {
+            "name": "Lucknow Super Giants",
+            "shortname": "LSG",
+            "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 187,
+            "w": 5,
+            "o": 20,
+            "inning": "Chennai Super Kings Inning 1"
+          },
+          {
+            "r": 86,
+            "w": 0,
+            "o": 6,
+            "inning": "Lucknow Super Giants Inning 1"
+          }
+        ],
+        "tossWinner": "lucknow super giants",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Chennai Super Kings": [
           {
@@ -6889,53 +6921,6 @@
             "img": "https://h.cricapi.com/img/players/a52b2d20-7c98-4238-9ba4-ec78419a5cc2.jpg"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "68746b1f-d4b0-4f0a-a46a-46a1946aae32",
-        "name": "Lucknow Super Giants vs Chennai Super Kings, 59th Match, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Lucknow Super Giants need 102 runs in 84 balls",
-        "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
-        "date": "2026-05-15",
-        "dateTimeGMT": "2026-05-15T14:00:00",
-        "teams": [
-          "Lucknow Super Giants",
-          "Chennai Super Kings"
-        ],
-        "teamInfo": [
-          {
-            "name": "Chennai Super Kings",
-            "shortname": "CSK",
-            "img": "https://g.cricapi.com/iapi/135-637852956181378533.png?w=48"
-          },
-          {
-            "name": "Lucknow Super Giants",
-            "shortname": "LSG",
-            "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 187,
-            "w": 5,
-            "o": 20,
-            "inning": "Chennai Super Kings Inning 1"
-          },
-          {
-            "r": 86,
-            "w": 0,
-            "o": 6,
-            "inning": "Lucknow Super Giants Inning 1"
-          }
-        ],
-        "tossWinner": "lucknow super giants",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
