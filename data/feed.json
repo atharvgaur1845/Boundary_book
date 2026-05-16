@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-16T13:38:57.614Z",
+  "generatedAt": "2026-05-16T16:00:26.832Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 0,
+    "live": 1,
     "completed": 59,
-    "upcoming": 15,
-    "withScorecard": 59,
-    "withSquads": 15
+    "upcoming": 14,
+    "withScorecard": 60,
+    "withSquads": 16
   },
-  "apiCalls": 3,
+  "apiCalls": 5,
   "errors": [],
   "matches": [
     {
@@ -6887,10 +6887,10 @@
           "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
-      "matchStarted": false,
+      "matchStarted": true,
       "matchEnded": false,
       "series": "Indian Premier League 2026",
       "squads": {
@@ -7216,6 +7216,47 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
+      },
+      "fullInfo": {
+        "id": "166633a2-cecb-4cf3-a984-78dc898b5345",
+        "name": "Kolkata Knight Riders vs Gujarat Titans, 60th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Gujarat Titans opt to bowl",
+        "venue": "Eden Gardens, Kolkata",
+        "date": "2026-05-16",
+        "dateTimeGMT": "2026-05-16T14:00:00",
+        "teams": [
+          "Kolkata Knight Riders",
+          "Gujarat Titans"
+        ],
+        "teamInfo": [
+          {
+            "name": "Gujarat Titans",
+            "shortname": "GT",
+            "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
+          },
+          {
+            "name": "Kolkata Knight Riders",
+            "shortname": "KKR",
+            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 157,
+            "w": 2,
+            "o": 13.1,
+            "inning": "Kolkata Knight Riders Inning 1"
+          }
+        ],
+        "tossWinner": "gujarat titans",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
       }
     },
     {
@@ -9678,7 +9719,319 @@
       "hasSquad": true,
       "matchStarted": false,
       "matchEnded": false,
-      "series": "Indian Premier League 2026"
+      "series": "Indian Premier League 2026",
+      "squads": {
+        "Lucknow Super Giants": [
+          {
+            "name": "Ayush Badoni",
+            "role": "Batting Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Josh Inglis",
+            "role": "WK-Batsman",
+            "country": "Australia",
+            "img": "https://h.cricapi.com/img/players/c040878f-3995-444c-a0f2-10a456f6c84d.jpg"
+          },
+          {
+            "name": "Mitchell Marsh",
+            "role": "Batting Allrounder",
+            "country": "Australia",
+            "img": "https://h.cricapi.com/img/players/6eaac800-13e7-4a07-8ee2-14acd04cc53f.jpg"
+          },
+          {
+            "name": "George Linde",
+            "role": "Batting Allrounder",
+            "country": "South Africa",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Aiden Markram",
+            "role": "Batsman",
+            "country": "South Africa",
+            "img": "https://h.cricapi.com/img/players/3fef81b0-c1e9-45eb-954f-519f3b33d640.jpg"
+          },
+          {
+            "name": "Digvesh Singh Rathi",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Manimaran Siddharth",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Akash Maharaj Singh",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Mohammed Shami",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/11d06633-aa20-469c-8fbb-676a1ae33eed.jpg"
+          },
+          {
+            "name": "Mohsin Khan",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Mukul Choudhary",
+            "role": "WK-Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Akshat Raghuwanshi",
+            "role": "Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Abdul Samad",
+            "role": "Batting Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/dd665f5d-04e8-436b-b376-8fd2a9b8bf8a.jpg"
+          },
+          {
+            "name": "Anrich Nortje",
+            "role": "Bowler",
+            "country": "South Africa",
+            "img": "https://h.cricapi.com/img/players/a8c7ce67-5862-4acb-9297-97eafd0ea3d5.jpg"
+          },
+          {
+            "name": "Arshin Kulkarni",
+            "role": "Batting Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Wanindu Hasaranga",
+            "role": "Bowling Allrounder",
+            "country": "Sri Lanka",
+            "img": "https://h.cricapi.com/img/players/ba4ba8aa-3ebb-431a-83a9-a78844a68e26.jpg"
+          },
+          {
+            "name": "Naman Tiwari",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Avesh Khan",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/332200ad-d1f8-4035-95c5-b33bd1c9a939.jpg"
+          },
+          {
+            "name": "Mayank Yadav",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Prince Yadav",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Arjun Tendulkar",
+            "role": "Bowling Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/6ceed869-d2b7-4707-b6fd-cb84419cda12.jpg"
+          },
+          {
+            "name": "Himmat Singh",
+            "role": "Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Nicholas Pooran",
+            "role": "WK-Batsman",
+            "country": "West Indies",
+            "img": "https://h.cricapi.com/img/players/4e8ab9cd-c5af-430e-887b-d22bf74ad052.jpg"
+          },
+          {
+            "name": "Matthew Breetzke",
+            "role": "WK-Batsman",
+            "country": "South Africa",
+            "img": "https://h.cricapi.com/img/players/b7f8b3f5-1759-43fe-914f-d9dc7f4269e2.jpg"
+          },
+          {
+            "name": "Shahbaz Ahmed",
+            "role": "Bowling Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/8f4c667c-4bb2-4808-a77b-ebece70f4273.jpg"
+          },
+          {
+            "name": "Rishabh Pant",
+            "role": "WK-Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/a52b2d20-7c98-4238-9ba4-ec78419a5cc2.jpg"
+          }
+        ],
+        "Punjab Kings": [
+          {
+            "name": "Cooper Connolly",
+            "role": "Batting Allrounder",
+            "country": "Australia",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Arshdeep Singh",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/607ff10c-5619-411d-a822-06ba28992230.jpg"
+          },
+          {
+            "name": "Vishnu Vinod",
+            "role": "WK-Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Yuzvendra Chahal",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/0d704a13-518a-40a7-bb93-0fc0d92af9e2.jpg"
+          },
+          {
+            "name": "Marco Jansen",
+            "role": "Bowling Allrounder",
+            "country": "South Africa",
+            "img": "https://h.cricapi.com/img/players/d3c53885-7016-4228-8a20-1dd98214489d.jpg"
+          },
+          {
+            "name": "Nehal Wadhera",
+            "role": "Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Xavier Bartlett",
+            "role": "Bowler",
+            "country": "Australia",
+            "img": "https://h.cricapi.com/img/players/cba19be9-7aec-4083-ba61-26f0aee31721.jpg"
+          },
+          {
+            "name": "Lockie Ferguson",
+            "role": "Bowler",
+            "country": "New Zealand",
+            "img": "https://h.cricapi.com/img/players/604d7c88-4f5d-40d9-b08b-330420964d87.jpg"
+          },
+          {
+            "name": "Mitchell Owen",
+            "role": "Batting Allrounder",
+            "country": "Australia",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Vijaykumar Vyshak",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Ben Dwarshuis",
+            "role": "Bowler",
+            "country": "Australia",
+            "img": "https://h.cricapi.com/img/players/388b664b-de80-4290-ab82-420873293b91.jpg"
+          },
+          {
+            "name": "Priyansh Arya",
+            "role": "Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Harnoor Singh",
+            "role": "Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/56ec7d07-d0d8-4d25-84df-64b0b3ce963d.jpg"
+          },
+          {
+            "name": "Musheer Khan",
+            "role": "Batting Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Suryansh Shedge",
+            "role": "Batting Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Prabhsimran Singh",
+            "role": "WK-Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/a15dfada-704c-42c3-9545-91c332ffca73.jpg"
+          },
+          {
+            "name": "Pyla Avinash",
+            "role": "Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Praveen Dubey",
+            "role": "Bowling Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/11beb0e3-9594-4304-b770-9f65b52a5ff9.jpg"
+          },
+          {
+            "name": "Harpreet Brar",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/e3005322-b01a-4c58-9b26-a2ca150ad1d1.jpg"
+          },
+          {
+            "name": "Yash Thakur",
+            "role": "Bowler",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Marcus Stoinis",
+            "role": "Batting Allrounder",
+            "country": "Australia",
+            "img": "https://h.cricapi.com/img/players/11340697-6443-4c3e-ab27-d9d30ba95671.jpg"
+          },
+          {
+            "name": "Shashank Singh",
+            "role": "Batting Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Azmatullah Omarzai",
+            "role": "Bowling Allrounder",
+            "country": "Afghanistan",
+            "img": "https://h.cricapi.com/img/players/7c341a4c-d3fa-4054-b95d-f75f94eee00c.jpg"
+          },
+          {
+            "name": "Vishal Nishad",
+            "role": "Bowling Allrounder",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/icon512.png"
+          },
+          {
+            "name": "Shreyas Iyer",
+            "role": "Batsman",
+            "country": "India",
+            "img": "https://h.cricapi.com/img/players/77791963-6c1b-4979-b07a-f910dee28cd9.jpg"
+          }
+        ]
+      }
     },
     {
       "id": "c0d94cec-8a67-4414-80af-81e7d4a9ee9a",
