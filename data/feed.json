@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-16T16:00:26.832Z",
+  "generatedAt": "2026-05-16T19:09:47.483Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 59,
+    "live": 0,
+    "completed": 60,
     "upcoming": 14,
     "withScorecard": 60,
     "withSquads": 16
   },
-  "apiCalls": 5,
+  "apiCalls": 3,
   "errors": [],
   "matches": [
     {
@@ -5711,6 +5711,21 @@
           "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 192,
+          "w": 4,
+          "o": 20,
+          "inning": "Kolkata Knight Riders Inning 1"
+        },
+        {
+          "r": 194,
+          "w": 4,
+          "o": 19.1,
+          "inning": "Royal Challengers Bengaluru Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -6107,6 +6122,21 @@
           "img": "https://g.cricapi.com/iapi/247-637852956959778791.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 200,
+          "w": 8,
+          "o": 20,
+          "inning": "Punjab Kings Inning 1"
+        },
+        {
+          "r": 205,
+          "w": 4,
+          "o": 19.5,
+          "inning": "Mumbai Indians Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -6491,6 +6521,21 @@
           "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 187,
+          "w": 5,
+          "o": 20,
+          "inning": "Chennai Super Kings Inning 1"
+        },
+        {
+          "r": 188,
+          "w": 3,
+          "o": 16.4,
+          "inning": "Lucknow Super Giants Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -6867,7 +6912,7 @@
       "id": "166633a2-cecb-4cf3-a984-78dc898b5345",
       "name": "Kolkata Knight Riders vs Gujarat Titans, 60th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Gujarat Titans opt to bowl",
+      "status": "Kolkata Knight Riders won by 29 runs",
       "venue": "Eden Gardens, Kolkata",
       "date": "2026-05-16",
       "dateTimeGMT": "2026-05-16T14:00:00",
@@ -6887,12 +6932,68 @@
           "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 247,
+          "w": 2,
+          "o": 20,
+          "inning": "Kolkata Knight Riders Inning 1"
+        },
+        {
+          "r": 218,
+          "w": 4,
+          "o": 20,
+          "inning": "Gujarat Titans Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "166633a2-cecb-4cf3-a984-78dc898b5345",
+        "name": "Kolkata Knight Riders vs Gujarat Titans, 60th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Gujarat Titans opt to bowl",
+        "venue": "Eden Gardens, Kolkata",
+        "date": "2026-05-16",
+        "dateTimeGMT": "2026-05-16T14:00:00",
+        "teams": [
+          "Kolkata Knight Riders",
+          "Gujarat Titans"
+        ],
+        "teamInfo": [
+          {
+            "name": "Gujarat Titans",
+            "shortname": "GT",
+            "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
+          },
+          {
+            "name": "Kolkata Knight Riders",
+            "shortname": "KKR",
+            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 157,
+            "w": 2,
+            "o": 13.1,
+            "inning": "Kolkata Knight Riders Inning 1"
+          }
+        ],
+        "tossWinner": "gujarat titans",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Gujarat Titans": [
           {
@@ -7216,47 +7317,6 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "166633a2-cecb-4cf3-a984-78dc898b5345",
-        "name": "Kolkata Knight Riders vs Gujarat Titans, 60th Match, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Gujarat Titans opt to bowl",
-        "venue": "Eden Gardens, Kolkata",
-        "date": "2026-05-16",
-        "dateTimeGMT": "2026-05-16T14:00:00",
-        "teams": [
-          "Kolkata Knight Riders",
-          "Gujarat Titans"
-        ],
-        "teamInfo": [
-          {
-            "name": "Gujarat Titans",
-            "shortname": "GT",
-            "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
-          },
-          {
-            "name": "Kolkata Knight Riders",
-            "shortname": "KKR",
-            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 157,
-            "w": 2,
-            "o": 13.1,
-            "inning": "Kolkata Knight Riders Inning 1"
-          }
-        ],
-        "tossWinner": "gujarat titans",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
