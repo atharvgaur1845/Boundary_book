@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-17T10:24:21.658Z",
+  "generatedAt": "2026-05-17T13:27:29.055Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -13,7 +13,7 @@
     "withScorecard": 61,
     "withSquads": 17
   },
-  "apiCalls": 5,
+  "apiCalls": 4,
   "errors": [],
   "matches": [
     {
@@ -7263,7 +7263,7 @@
       "id": "288e3406-3692-400a-bc22-fb8cfa0db2ca",
       "name": "Punjab Kings vs Royal Challengers Bengaluru, 61st Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Punjab Kings opt to bowl",
+      "status": "Punjab Kings need 63 runs in 24 balls",
       "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
       "date": "2026-05-17",
       "dateTimeGMT": "2026-05-17T10:00:00",
@@ -7599,7 +7599,7 @@
         "id": "288e3406-3692-400a-bc22-fb8cfa0db2ca",
         "name": "Punjab Kings vs Royal Challengers Bengaluru, 61st Match, Indian Premier League 2026",
         "matchType": "t20",
-        "status": "Punjab Kings opt to bowl",
+        "status": "Punjab Kings need 63 runs in 24 balls",
         "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
         "date": "2026-05-17",
         "dateTimeGMT": "2026-05-17T10:00:00",
@@ -7621,10 +7621,16 @@
         ],
         "score": [
           {
-            "r": 40,
-            "w": 1,
-            "o": 4,
+            "r": 222,
+            "w": 4,
+            "o": 20,
             "inning": "Royal Challengers Bengaluru Inning 1"
+          },
+          {
+            "r": 160,
+            "w": 5,
+            "o": 16,
+            "inning": "Punjab Kings Inning 1"
           }
         ],
         "tossWinner": "punjab kings",
