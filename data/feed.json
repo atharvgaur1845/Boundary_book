@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-17T03:46:26.982Z",
+  "generatedAt": "2026-05-17T08:25:25.464Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -6107,21 +6107,6 @@
           "img": "https://g.cricapi.com/iapi/247-637852956959778791.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 200,
-          "w": 8,
-          "o": 20,
-          "inning": "Punjab Kings Inning 1"
-        },
-        {
-          "r": 205,
-          "w": 4,
-          "o": 19.5,
-          "inning": "Mumbai Indians Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -6506,21 +6491,6 @@
           "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 187,
-          "w": 5,
-          "o": 20,
-          "inning": "Chennai Super Kings Inning 1"
-        },
-        {
-          "r": 188,
-          "w": 3,
-          "o": 16.4,
-          "inning": "Lucknow Super Giants Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -6917,21 +6887,6 @@
           "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 247,
-          "w": 2,
-          "o": 20,
-          "inning": "Kolkata Knight Riders Inning 1"
-        },
-        {
-          "r": 218,
-          "w": 4,
-          "o": 20,
-          "inning": "Gujarat Titans Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
