@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-18T15:40:29.626Z",
+  "generatedAt": "2026-05-18T19:47:58.272Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,17 +7,14 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 62,
+    "live": 0,
+    "completed": 63,
     "upcoming": 11,
     "withScorecard": 63,
     "withSquads": 18
   },
-  "apiCalls": 4,
-  "errors": [
-    "currentMatches: currentMatches: Invalid operation",
-    "matches: matches: Invalid operation"
-  ],
+  "apiCalls": 3,
+  "errors": [],
   "matches": [
     {
       "id": "547b47e3-b2d9-4f51-8a49-8e7e4c946a6e",
@@ -8034,7 +8031,7 @@
       "id": "8416c2a9-4a74-4ac2-a6ae-5ad2538cbc56",
       "name": "Chennai Super Kings vs Sunrisers Hyderabad, 63rd Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Chennai Super Kings opt to bat",
+      "status": "Sunrisers Hyderabad won by 5 wkts",
       "venue": "MA Chidambaram Stadium, Chennai",
       "date": "2026-05-18",
       "dateTimeGMT": "2026-05-18T14:00:00",
@@ -8058,8 +8055,49 @@
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "8416c2a9-4a74-4ac2-a6ae-5ad2538cbc56",
+        "name": "Chennai Super Kings vs Sunrisers Hyderabad, 63rd Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Chennai Super Kings opt to bat",
+        "venue": "MA Chidambaram Stadium, Chennai",
+        "date": "2026-05-18",
+        "dateTimeGMT": "2026-05-18T14:00:00",
+        "teams": [
+          "Chennai Super Kings",
+          "Sunrisers Hyderabad"
+        ],
+        "teamInfo": [
+          {
+            "name": "Chennai Super Kings",
+            "shortname": "CSK",
+            "img": "https://g.cricapi.com/iapi/135-637852956181378533.png?w=48"
+          },
+          {
+            "name": "Sunrisers Hyderabad",
+            "shortname": "SRH",
+            "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 151,
+            "w": 4,
+            "o": 16.5,
+            "inning": "chennai super kings Inning 1"
+          }
+        ],
+        "tossWinner": "chennai super kings",
+        "tossChoice": "bat",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Chennai Super Kings": [
           {
@@ -8383,47 +8421,6 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "8416c2a9-4a74-4ac2-a6ae-5ad2538cbc56",
-        "name": "Chennai Super Kings vs Sunrisers Hyderabad, 63rd Match, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Chennai Super Kings opt to bat",
-        "venue": "MA Chidambaram Stadium, Chennai",
-        "date": "2026-05-18",
-        "dateTimeGMT": "2026-05-18T14:00:00",
-        "teams": [
-          "Chennai Super Kings",
-          "Sunrisers Hyderabad"
-        ],
-        "teamInfo": [
-          {
-            "name": "Chennai Super Kings",
-            "shortname": "CSK",
-            "img": "https://g.cricapi.com/iapi/135-637852956181378533.png?w=48"
-          },
-          {
-            "name": "Sunrisers Hyderabad",
-            "shortname": "SRH",
-            "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 151,
-            "w": 4,
-            "o": 16.5,
-            "inning": "chennai super kings Inning 1"
-          }
-        ],
-        "tossWinner": "chennai super kings",
-        "tossChoice": "bat",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
