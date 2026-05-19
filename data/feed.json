@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-19T15:31:58.930Z",
+  "generatedAt": "2026-05-19T19:55:25.153Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 63,
+    "live": 0,
+    "completed": 64,
     "upcoming": 10,
     "withScorecard": 64,
     "withSquads": 18
   },
-  "apiCalls": 5,
+  "apiCalls": 4,
   "errors": [],
   "matches": [
     {
@@ -8427,7 +8427,7 @@
       "id": "3b225f44-ddf2-41d4-8079-7a3f81876e35",
       "name": "Rajasthan Royals vs Lucknow Super Giants, 64th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Rajasthan Royals opt to bowl",
+      "status": "Rajasthan Royals won by 7 wkts",
       "venue": "Sawai Mansingh Stadium, Jaipur",
       "date": "2026-05-19",
       "dateTimeGMT": "2026-05-19T14:00:00",
@@ -8451,8 +8451,49 @@
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "3b225f44-ddf2-41d4-8079-7a3f81876e35",
+        "name": "Rajasthan Royals vs Lucknow Super Giants, 64th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Rajasthan Royals opt to bowl",
+        "venue": "Sawai Mansingh Stadium, Jaipur",
+        "date": "2026-05-19",
+        "dateTimeGMT": "2026-05-19T14:00:00",
+        "teams": [
+          "Rajasthan Royals",
+          "Lucknow Super Giants"
+        ],
+        "teamInfo": [
+          {
+            "name": "Lucknow Super Giants",
+            "shortname": "LSG",
+            "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
+          },
+          {
+            "name": "Rajasthan Royals",
+            "shortname": "RR",
+            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 190,
+            "w": 2,
+            "o": 16.5,
+            "inning": "Lucknow Super Giants Inning 1"
+          }
+        ],
+        "tossWinner": "rajasthan royals",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Lucknow Super Giants": [
           {
@@ -8770,47 +8811,6 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "3b225f44-ddf2-41d4-8079-7a3f81876e35",
-        "name": "Rajasthan Royals vs Lucknow Super Giants, 64th Match, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Rajasthan Royals opt to bowl",
-        "venue": "Sawai Mansingh Stadium, Jaipur",
-        "date": "2026-05-19",
-        "dateTimeGMT": "2026-05-19T14:00:00",
-        "teams": [
-          "Rajasthan Royals",
-          "Lucknow Super Giants"
-        ],
-        "teamInfo": [
-          {
-            "name": "Lucknow Super Giants",
-            "shortname": "LSG",
-            "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
-          },
-          {
-            "name": "Rajasthan Royals",
-            "shortname": "RR",
-            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 190,
-            "w": 2,
-            "o": 16.5,
-            "inning": "Lucknow Super Giants Inning 1"
-          }
-        ],
-        "tossWinner": "rajasthan royals",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
