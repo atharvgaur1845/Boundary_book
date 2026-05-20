@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-20T09:40:42.481Z",
+  "generatedAt": "2026-05-20T15:29:19.395Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 0,
+    "live": 1,
     "completed": 64,
-    "upcoming": 10,
-    "withScorecard": 64,
+    "upcoming": 9,
+    "withScorecard": 65,
     "withSquads": 18
   },
-  "apiCalls": 4,
+  "apiCalls": 5,
   "errors": [],
   "matches": [
     {
@@ -8817,7 +8817,7 @@
       "id": "5b1d59f9-51fd-449d-8cf1-9fc15ef15675",
       "name": "Kolkata Knight Riders vs Mumbai Indians, 65th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Match starts at May 20, 14:00 GMT",
+      "status": "Match delayed due to wet outfield - Kolkata Knight Riders opt to bowl",
       "venue": "Eden Gardens, Kolkata",
       "date": "2026-05-20",
       "dateTimeGMT": "2026-05-20T14:00:00",
@@ -8837,10 +8837,10 @@
           "img": "https://g.cricapi.com/iapi/226-637852956375593901.png?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
-      "matchStarted": false,
+      "matchStarted": true,
       "matchEnded": false,
       "series": "Indian Premier League 2026",
       "squads": {
@@ -9160,6 +9160,47 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
+      },
+      "fullInfo": {
+        "id": "5b1d59f9-51fd-449d-8cf1-9fc15ef15675",
+        "name": "Kolkata Knight Riders vs Mumbai Indians, 65th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Match delayed due to wet outfield - Kolkata Knight Riders opt to bowl",
+        "venue": "Eden Gardens, Kolkata",
+        "date": "2026-05-20",
+        "dateTimeGMT": "2026-05-20T14:00:00",
+        "teams": [
+          "Kolkata Knight Riders",
+          "Mumbai Indians"
+        ],
+        "teamInfo": [
+          {
+            "name": "Kolkata Knight Riders",
+            "shortname": "KKR",
+            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
+          },
+          {
+            "name": "Mumbai Indians",
+            "shortname": "MI",
+            "img": "https://g.cricapi.com/iapi/226-637852956375593901.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 57,
+            "w": 4,
+            "o": 8,
+            "inning": "Mumbai Indians Inning 1"
+          }
+        ],
+        "tossWinner": "kolkata knight riders",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
       }
     },
     {
