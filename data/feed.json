@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T04:03:01.137Z",
+  "generatedAt": "2026-05-21T09:48:56.079Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -8837,21 +8837,6 @@
           "img": "https://g.cricapi.com/iapi/226-637852956375593901.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 147,
-          "w": 8,
-          "o": 20,
-          "inning": "Mumbai Indians Inning 1"
-        },
-        {
-          "r": 148,
-          "w": 6,
-          "o": 18.5,
-          "inning": "Kolkata Knight Riders Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
