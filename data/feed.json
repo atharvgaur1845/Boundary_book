@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T15:35:49.125Z",
+  "generatedAt": "2026-05-21T19:57:36.855Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 65,
+    "live": 0,
+    "completed": 66,
     "upcoming": 8,
     "withScorecard": 66,
     "withSquads": 18
   },
-  "apiCalls": 5,
+  "apiCalls": 4,
   "errors": [],
   "matches": [
     {
@@ -8051,6 +8051,21 @@
           "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 180,
+          "w": 7,
+          "o": 20,
+          "inning": "chennai super kings Inning 1"
+        },
+        {
+          "r": 181,
+          "w": 5,
+          "o": 19,
+          "inning": "Chennai Super Kings,Sunrisers Hyderabad Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -8447,6 +8462,21 @@
           "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 220,
+          "w": 5,
+          "o": 20,
+          "inning": "Lucknow Super Giants Inning 1"
+        },
+        {
+          "r": 225,
+          "w": 3,
+          "o": 19.1,
+          "inning": "Rajasthan Royals Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -8837,6 +8867,21 @@
           "img": "https://g.cricapi.com/iapi/226-637852956375593901.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 147,
+          "w": 8,
+          "o": 20,
+          "inning": "Mumbai Indians Inning 1"
+        },
+        {
+          "r": 148,
+          "w": 6,
+          "o": 18.5,
+          "inning": "Kolkata Knight Riders Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -9207,7 +9252,7 @@
       "id": "fd660ab1-c4bf-4c0f-b1b9-7232361cd1e8",
       "name": "Gujarat Titans vs Chennai Super Kings, 66th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Chennai Super Kings opt to bowl",
+      "status": "Gujarat Titans won by 89 runs",
       "venue": "Narendra Modi Stadium, Ahmedabad",
       "date": "2026-05-21",
       "dateTimeGMT": "2026-05-21T14:00:00",
@@ -9227,12 +9272,68 @@
           "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 229,
+          "w": 4,
+          "o": 20,
+          "inning": "Gujarat Titans Inning 1"
+        },
+        {
+          "r": 140,
+          "w": 10,
+          "o": 13.4,
+          "inning": "Chennai Super Kings Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "fd660ab1-c4bf-4c0f-b1b9-7232361cd1e8",
+        "name": "Gujarat Titans vs Chennai Super Kings, 66th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Chennai Super Kings opt to bowl",
+        "venue": "Narendra Modi Stadium, Ahmedabad",
+        "date": "2026-05-21",
+        "dateTimeGMT": "2026-05-21T14:00:00",
+        "teams": [
+          "Gujarat Titans",
+          "Chennai Super Kings"
+        ],
+        "teamInfo": [
+          {
+            "name": "Chennai Super Kings",
+            "shortname": "CSK",
+            "img": "https://g.cricapi.com/iapi/135-637852956181378533.png?w=48"
+          },
+          {
+            "name": "Gujarat Titans",
+            "shortname": "GT",
+            "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 180,
+            "w": 1,
+            "o": 16.1,
+            "inning": "Gujarat Titans Inning 1"
+          }
+        ],
+        "tossWinner": "chennai super kings",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Chennai Super Kings": [
           {
@@ -9550,47 +9651,6 @@
             "img": "https://h.cricapi.com/img/players/d0f69230-16e0-4a79-92aa-f9f7c588d5d3.jpg"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "fd660ab1-c4bf-4c0f-b1b9-7232361cd1e8",
-        "name": "Gujarat Titans vs Chennai Super Kings, 66th Match, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Chennai Super Kings opt to bowl",
-        "venue": "Narendra Modi Stadium, Ahmedabad",
-        "date": "2026-05-21",
-        "dateTimeGMT": "2026-05-21T14:00:00",
-        "teams": [
-          "Gujarat Titans",
-          "Chennai Super Kings"
-        ],
-        "teamInfo": [
-          {
-            "name": "Chennai Super Kings",
-            "shortname": "CSK",
-            "img": "https://g.cricapi.com/iapi/135-637852956181378533.png?w=48"
-          },
-          {
-            "name": "Gujarat Titans",
-            "shortname": "GT",
-            "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 180,
-            "w": 1,
-            "o": 16.1,
-            "inning": "Gujarat Titans Inning 1"
-          }
-        ],
-        "tossWinner": "chennai super kings",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
