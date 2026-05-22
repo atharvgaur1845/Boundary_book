@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-22T14:45:49.377Z",
+  "generatedAt": "2026-05-22T17:10:29.729Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -9597,7 +9597,7 @@
       "id": "bf23431b-ba1c-4147-94d9-b8d361a3ce9e",
       "name": "Sunrisers Hyderabad vs Royal Challengers Bengaluru, 67th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Sunrisers Hyderabad opt to bat",
+      "status": "Royal Challengers Bengaluru need 152 runs in 59 balls",
       "venue": "Rajiv Gandhi International Stadium, Hyderabad",
       "date": "2026-05-22",
       "dateTimeGMT": "2026-05-22T14:00:00",
@@ -9945,7 +9945,7 @@
         "id": "bf23431b-ba1c-4147-94d9-b8d361a3ce9e",
         "name": "Sunrisers Hyderabad vs Royal Challengers Bengaluru, 67th Match, Indian Premier League 2026",
         "matchType": "t20",
-        "status": "Sunrisers Hyderabad opt to bat",
+        "status": "Royal Challengers Bengaluru need 152 runs in 59 balls",
         "venue": "Rajiv Gandhi International Stadium, Hyderabad",
         "date": "2026-05-22",
         "dateTimeGMT": "2026-05-22T14:00:00",
@@ -9967,10 +9967,16 @@
         ],
         "score": [
           {
-            "r": 97,
-            "w": 2,
-            "o": 8.2,
+            "r": 255,
+            "w": 4,
+            "o": 20,
             "inning": "sunrisers hyderabad Inning 1"
+          },
+          {
+            "r": 104,
+            "w": 3,
+            "o": 10.1,
+            "inning": "Sunrisers Hyderabad,Royal Challengers Bengaluru Inning 1"
           }
         ],
         "tossWinner": "sunrisers hyderabad",
