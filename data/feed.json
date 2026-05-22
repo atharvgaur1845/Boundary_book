@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-22T09:33:24.325Z",
+  "generatedAt": "2026-05-22T14:45:49.377Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 0,
+    "live": 1,
     "completed": 66,
-    "upcoming": 8,
-    "withScorecard": 66,
+    "upcoming": 7,
+    "withScorecard": 67,
     "withSquads": 18
   },
-  "apiCalls": 4,
+  "apiCalls": 5,
   "errors": [],
   "matches": [
     {
@@ -8051,21 +8051,6 @@
           "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 180,
-          "w": 7,
-          "o": 20,
-          "inning": "chennai super kings Inning 1"
-        },
-        {
-          "r": 181,
-          "w": 5,
-          "o": 19,
-          "inning": "Chennai Super Kings,Sunrisers Hyderabad Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -8462,21 +8447,6 @@
           "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 220,
-          "w": 5,
-          "o": 20,
-          "inning": "Lucknow Super Giants Inning 1"
-        },
-        {
-          "r": 225,
-          "w": 3,
-          "o": 19.1,
-          "inning": "Rajasthan Royals Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -8867,21 +8837,6 @@
           "img": "https://g.cricapi.com/iapi/226-637852956375593901.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 147,
-          "w": 8,
-          "o": 20,
-          "inning": "Mumbai Indians Inning 1"
-        },
-        {
-          "r": 148,
-          "w": 6,
-          "o": 18.5,
-          "inning": "Kolkata Knight Riders Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -9272,21 +9227,6 @@
           "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
         }
       ],
-      "score": [
-        {
-          "r": 229,
-          "w": 4,
-          "o": 20,
-          "inning": "Gujarat Titans Inning 1"
-        },
-        {
-          "r": 140,
-          "w": 10,
-          "o": 13.4,
-          "inning": "Chennai Super Kings Inning 1"
-        }
-      ],
-      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
@@ -9657,7 +9597,7 @@
       "id": "bf23431b-ba1c-4147-94d9-b8d361a3ce9e",
       "name": "Sunrisers Hyderabad vs Royal Challengers Bengaluru, 67th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Match starts at May 22, 14:00 GMT",
+      "status": "Sunrisers Hyderabad opt to bat",
       "venue": "Rajiv Gandhi International Stadium, Hyderabad",
       "date": "2026-05-22",
       "dateTimeGMT": "2026-05-22T14:00:00",
@@ -9677,10 +9617,10 @@
           "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
-      "matchStarted": false,
+      "matchStarted": true,
       "matchEnded": false,
       "series": "Indian Premier League 2026",
       "squads": {
@@ -10000,6 +9940,47 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
+      },
+      "fullInfo": {
+        "id": "bf23431b-ba1c-4147-94d9-b8d361a3ce9e",
+        "name": "Sunrisers Hyderabad vs Royal Challengers Bengaluru, 67th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Sunrisers Hyderabad opt to bat",
+        "venue": "Rajiv Gandhi International Stadium, Hyderabad",
+        "date": "2026-05-22",
+        "dateTimeGMT": "2026-05-22T14:00:00",
+        "teams": [
+          "Sunrisers Hyderabad",
+          "Royal Challengers Bengaluru"
+        ],
+        "teamInfo": [
+          {
+            "name": "Royal Challengers Bengaluru",
+            "shortname": "RCBW",
+            "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
+          },
+          {
+            "name": "Sunrisers Hyderabad",
+            "shortname": "SRH",
+            "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 97,
+            "w": 2,
+            "o": 8.2,
+            "inning": "sunrisers hyderabad Inning 1"
+          }
+        ],
+        "tossWinner": "sunrisers hyderabad",
+        "tossChoice": "bat",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
       }
     },
     {
