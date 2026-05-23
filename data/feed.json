@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-23T13:42:28.953Z",
+  "generatedAt": "2026-05-23T16:04:05.268Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 0,
+    "live": 1,
     "completed": 67,
-    "upcoming": 7,
-    "withScorecard": 67,
+    "upcoming": 6,
+    "withScorecard": 68,
     "withSquads": 19
   },
-  "apiCalls": 4,
+  "apiCalls": 5,
   "errors": [],
   "matches": [
     {
@@ -9993,7 +9993,7 @@
       "id": "7134216b-553c-4099-82a8-ee48bd9c46f3",
       "name": "Lucknow Super Giants vs Punjab Kings, 68th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Punjab Kings opt to bowl",
+      "status": "Innings Break",
       "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
       "date": "2026-05-23",
       "dateTimeGMT": "2026-05-23T14:00:00",
@@ -10013,10 +10013,10 @@
           "img": "https://g.cricapi.com/iapi/247-637852956959778791.png?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
-      "matchStarted": false,
+      "matchStarted": true,
       "matchEnded": false,
       "series": "Indian Premier League 2026",
       "squads": {
@@ -10330,6 +10330,47 @@
             "img": "https://h.cricapi.com/img/players/77791963-6c1b-4979-b07a-f910dee28cd9.jpg"
           }
         ]
+      },
+      "fullInfo": {
+        "id": "7134216b-553c-4099-82a8-ee48bd9c46f3",
+        "name": "Lucknow Super Giants vs Punjab Kings, 68th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Innings Break",
+        "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+        "date": "2026-05-23",
+        "dateTimeGMT": "2026-05-23T14:00:00",
+        "teams": [
+          "Lucknow Super Giants",
+          "Punjab Kings"
+        ],
+        "teamInfo": [
+          {
+            "name": "Lucknow Super Giants",
+            "shortname": "LSG",
+            "img": "https://g.cricapi.com/iapi/215-637876059669009476.png?w=48"
+          },
+          {
+            "name": "Punjab Kings",
+            "shortname": "PBKS",
+            "img": "https://g.cricapi.com/iapi/247-637852956959778791.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 196,
+            "w": 6,
+            "o": 20,
+            "inning": "Lucknow Super Giants Inning 1"
+          }
+        ],
+        "tossWinner": "punjab kings",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
       }
     },
     {
