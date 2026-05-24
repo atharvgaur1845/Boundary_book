@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-24T08:33:35.594Z",
+  "generatedAt": "2026-05-24T10:43:18.643Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 0,
+    "live": 1,
     "completed": 68,
-    "upcoming": 6,
-    "withScorecard": 68,
+    "upcoming": 5,
+    "withScorecard": 69,
     "withSquads": 19
   },
-  "apiCalls": 4,
+  "apiCalls": 5,
   "errors": [],
   "matches": [
     {
@@ -10377,7 +10377,7 @@
       "id": "c0d94cec-8a67-4414-80af-81e7d4a9ee9a",
       "name": "Mumbai Indians vs Rajasthan Royals, 69th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Match starts at May 24, 10:00 GMT",
+      "status": "Mumbai Indians opt to bowl",
       "venue": "Wankhede Stadium, Mumbai",
       "date": "2026-05-24",
       "dateTimeGMT": "2026-05-24T10:00:00",
@@ -10397,10 +10397,10 @@
           "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
-      "matchStarted": false,
+      "matchStarted": true,
       "matchEnded": false,
       "series": "Indian Premier League 2026",
       "squads": {
@@ -10714,6 +10714,47 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
+      },
+      "fullInfo": {
+        "id": "c0d94cec-8a67-4414-80af-81e7d4a9ee9a",
+        "name": "Mumbai Indians vs Rajasthan Royals, 69th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Mumbai Indians opt to bowl",
+        "venue": "Wankhede Stadium, Mumbai",
+        "date": "2026-05-24",
+        "dateTimeGMT": "2026-05-24T10:00:00",
+        "teams": [
+          "Mumbai Indians",
+          "Rajasthan Royals"
+        ],
+        "teamInfo": [
+          {
+            "name": "Mumbai Indians",
+            "shortname": "MI",
+            "img": "https://g.cricapi.com/iapi/226-637852956375593901.png?w=48"
+          },
+          {
+            "name": "Rajasthan Royals",
+            "shortname": "RR",
+            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 56,
+            "w": 3,
+            "o": 6.3,
+            "inning": "Rajasthan Royals Inning 1"
+          }
+        ],
+        "tossWinner": "mumbai indians",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
       }
     },
     {
