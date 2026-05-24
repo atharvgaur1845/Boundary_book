@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-24T13:42:46.523Z",
+  "generatedAt": "2026-05-24T16:04:01.458Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -8,9 +8,9 @@
   "counts": {
     "total": 74,
     "live": 1,
-    "completed": 68,
-    "upcoming": 5,
-    "withScorecard": 69,
+    "completed": 69,
+    "upcoming": 4,
+    "withScorecard": 70,
     "withSquads": 19
   },
   "apiCalls": 5,
@@ -10379,7 +10379,7 @@
       "id": "c0d94cec-8a67-4414-80af-81e7d4a9ee9a",
       "name": "Mumbai Indians vs Rajasthan Royals, 69th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Mumbai Indians need 63 runs in 35 balls",
+      "status": "Rajasthan Royals won by 30 runs",
       "venue": "Wankhede Stadium, Mumbai",
       "date": "2026-05-24",
       "dateTimeGMT": "2026-05-24T10:00:00",
@@ -10403,8 +10403,55 @@
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "c0d94cec-8a67-4414-80af-81e7d4a9ee9a",
+        "name": "Mumbai Indians vs Rajasthan Royals, 69th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Mumbai Indians need 63 runs in 35 balls",
+        "venue": "Wankhede Stadium, Mumbai",
+        "date": "2026-05-24",
+        "dateTimeGMT": "2026-05-24T10:00:00",
+        "teams": [
+          "Mumbai Indians",
+          "Rajasthan Royals"
+        ],
+        "teamInfo": [
+          {
+            "name": "Mumbai Indians",
+            "shortname": "MI",
+            "img": "https://g.cricapi.com/iapi/226-637852956375593901.png?w=48"
+          },
+          {
+            "name": "Rajasthan Royals",
+            "shortname": "RR",
+            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 205,
+            "w": 8,
+            "o": 20,
+            "inning": "Rajasthan Royals Inning 1"
+          },
+          {
+            "r": 143,
+            "w": 5,
+            "o": 14.1,
+            "inning": "Mumbai Indians Inning 1"
+          }
+        ],
+        "tossWinner": "mumbai indians",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Mumbai Indians": [
           {
@@ -10716,53 +10763,6 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "c0d94cec-8a67-4414-80af-81e7d4a9ee9a",
-        "name": "Mumbai Indians vs Rajasthan Royals, 69th Match, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Mumbai Indians need 63 runs in 35 balls",
-        "venue": "Wankhede Stadium, Mumbai",
-        "date": "2026-05-24",
-        "dateTimeGMT": "2026-05-24T10:00:00",
-        "teams": [
-          "Mumbai Indians",
-          "Rajasthan Royals"
-        ],
-        "teamInfo": [
-          {
-            "name": "Mumbai Indians",
-            "shortname": "MI",
-            "img": "https://g.cricapi.com/iapi/226-637852956375593901.png?w=48"
-          },
-          {
-            "name": "Rajasthan Royals",
-            "shortname": "RR",
-            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 205,
-            "w": 8,
-            "o": 20,
-            "inning": "Rajasthan Royals Inning 1"
-          },
-          {
-            "r": 143,
-            "w": 5,
-            "o": 14.1,
-            "inning": "Mumbai Indians Inning 1"
-          }
-        ],
-        "tossWinner": "mumbai indians",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
@@ -10789,10 +10789,10 @@
           "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
-      "matchStarted": false,
+      "matchStarted": true,
       "matchEnded": false,
       "series": "Indian Premier League 2026",
       "squads": {
@@ -11112,6 +11112,47 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
+      },
+      "fullInfo": {
+        "id": "8f61d649-f53b-4e79-9bfb-661cfe69be3b",
+        "name": "Kolkata Knight Riders vs Delhi Capitals, 70th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Kolkata Knight Riders opt to bowl",
+        "venue": "Eden Gardens, Kolkata",
+        "date": "2026-05-24",
+        "dateTimeGMT": "2026-05-24T14:00:00",
+        "teams": [
+          "Kolkata Knight Riders",
+          "Delhi Capitals"
+        ],
+        "teamInfo": [
+          {
+            "name": "Delhi Capitals",
+            "shortname": "DC",
+            "img": "https://g.cricapi.com/iapi/148-637874596301457910.png?w=48"
+          },
+          {
+            "name": "Kolkata Knight Riders",
+            "shortname": "KKR",
+            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 187,
+            "w": 4,
+            "o": 19,
+            "inning": "Delhi Capitals Inning 1"
+          }
+        ],
+        "tossWinner": "kolkata knight riders",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
       }
     },
     {
