@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-24T16:04:01.458Z",
+  "generatedAt": "2026-05-24T19:21:34.006Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,16 +7,14 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 69,
+    "live": 0,
+    "completed": 70,
     "upcoming": 4,
     "withScorecard": 70,
     "withSquads": 19
   },
-  "apiCalls": 5,
-  "errors": [
-    "matches: matches: Invalid operation"
-  ],
+  "apiCalls": 4,
+  "errors": [],
   "matches": [
     {
       "id": "547b47e3-b2d9-4f51-8a49-8e7e4c946a6e",
@@ -10769,7 +10767,7 @@
       "id": "8f61d649-f53b-4e79-9bfb-661cfe69be3b",
       "name": "Kolkata Knight Riders vs Delhi Capitals, 70th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Kolkata Knight Riders opt to bowl",
+      "status": "Delhi Capitals won by 40 runs",
       "venue": "Eden Gardens, Kolkata",
       "date": "2026-05-24",
       "dateTimeGMT": "2026-05-24T14:00:00",
@@ -10793,8 +10791,49 @@
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "8f61d649-f53b-4e79-9bfb-661cfe69be3b",
+        "name": "Kolkata Knight Riders vs Delhi Capitals, 70th Match, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Kolkata Knight Riders opt to bowl",
+        "venue": "Eden Gardens, Kolkata",
+        "date": "2026-05-24",
+        "dateTimeGMT": "2026-05-24T14:00:00",
+        "teams": [
+          "Kolkata Knight Riders",
+          "Delhi Capitals"
+        ],
+        "teamInfo": [
+          {
+            "name": "Delhi Capitals",
+            "shortname": "DC",
+            "img": "https://g.cricapi.com/iapi/148-637874596301457910.png?w=48"
+          },
+          {
+            "name": "Kolkata Knight Riders",
+            "shortname": "KKR",
+            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 187,
+            "w": 4,
+            "o": 19,
+            "inning": "Delhi Capitals Inning 1"
+          }
+        ],
+        "tossWinner": "kolkata knight riders",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Delhi Capitals": [
           {
@@ -11112,47 +11151,6 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "8f61d649-f53b-4e79-9bfb-661cfe69be3b",
-        "name": "Kolkata Knight Riders vs Delhi Capitals, 70th Match, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Kolkata Knight Riders opt to bowl",
-        "venue": "Eden Gardens, Kolkata",
-        "date": "2026-05-24",
-        "dateTimeGMT": "2026-05-24T14:00:00",
-        "teams": [
-          "Kolkata Knight Riders",
-          "Delhi Capitals"
-        ],
-        "teamInfo": [
-          {
-            "name": "Delhi Capitals",
-            "shortname": "DC",
-            "img": "https://g.cricapi.com/iapi/148-637874596301457910.png?w=48"
-          },
-          {
-            "name": "Kolkata Knight Riders",
-            "shortname": "KKR",
-            "img": "https://g.cricapi.com/iapi/206-637852958714346149.png?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 187,
-            "w": 4,
-            "o": 19,
-            "inning": "Delhi Capitals Inning 1"
-          }
-        ],
-        "tossWinner": "kolkata knight riders",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
@@ -11500,7 +11498,7 @@
     },
     {
       "id": "58ddaae3-9fa7-4110-97f8-c9ae6d80099b",
-      "name": "Sunrisers Hyderabad vs Tbc, Eliminator, Indian Premier League 2026",
+      "name": "Sunrisers Hyderabad vs Rajasthan Royals, Eliminator, Indian Premier League 2026",
       "matchType": "t20",
       "status": "Match starts at May 27, 14:00 GMT",
       "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
@@ -11508,18 +11506,18 @@
       "dateTimeGMT": "2026-05-27T14:00:00",
       "teams": [
         "Sunrisers Hyderabad",
-        "Tbc"
+        "Rajasthan Royals"
       ],
       "teamInfo": [
+        {
+          "name": "Rajasthan Royals",
+          "shortname": "RR",
+          "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
+        },
         {
           "name": "Sunrisers Hyderabad",
           "shortname": "SRH",
           "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
-        },
-        {
-          "name": "Tbc",
-          "shortname": "TBC",
-          "img": "https://h.cricapi.com/img/icon512.png"
         }
       ],
       "fantasyEnabled": false,
