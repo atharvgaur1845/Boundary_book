@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-24T10:43:18.643Z",
+  "generatedAt": "2026-05-24T13:42:46.523Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -14,7 +14,9 @@
     "withSquads": 19
   },
   "apiCalls": 5,
-  "errors": [],
+  "errors": [
+    "matches: matches: Invalid operation"
+  ],
   "matches": [
     {
       "id": "547b47e3-b2d9-4f51-8a49-8e7e4c946a6e",
@@ -10377,7 +10379,7 @@
       "id": "c0d94cec-8a67-4414-80af-81e7d4a9ee9a",
       "name": "Mumbai Indians vs Rajasthan Royals, 69th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Mumbai Indians opt to bowl",
+      "status": "Mumbai Indians need 63 runs in 35 balls",
       "venue": "Wankhede Stadium, Mumbai",
       "date": "2026-05-24",
       "dateTimeGMT": "2026-05-24T10:00:00",
@@ -10719,7 +10721,7 @@
         "id": "c0d94cec-8a67-4414-80af-81e7d4a9ee9a",
         "name": "Mumbai Indians vs Rajasthan Royals, 69th Match, Indian Premier League 2026",
         "matchType": "t20",
-        "status": "Mumbai Indians opt to bowl",
+        "status": "Mumbai Indians need 63 runs in 35 balls",
         "venue": "Wankhede Stadium, Mumbai",
         "date": "2026-05-24",
         "dateTimeGMT": "2026-05-24T10:00:00",
@@ -10741,10 +10743,16 @@
         ],
         "score": [
           {
-            "r": 56,
-            "w": 3,
-            "o": 6.3,
+            "r": 205,
+            "w": 8,
+            "o": 20,
             "inning": "Rajasthan Royals Inning 1"
+          },
+          {
+            "r": 143,
+            "w": 5,
+            "o": 14.1,
+            "inning": "Mumbai Indians Inning 1"
           }
         ],
         "tossWinner": "mumbai indians",
@@ -10761,7 +10769,7 @@
       "id": "8f61d649-f53b-4e79-9bfb-661cfe69be3b",
       "name": "Kolkata Knight Riders vs Delhi Capitals, 70th Match, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Match starts at May 24, 14:00 GMT",
+      "status": "Kolkata Knight Riders opt to bowl",
       "venue": "Eden Gardens, Kolkata",
       "date": "2026-05-24",
       "dateTimeGMT": "2026-05-24T14:00:00",
