@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-26T15:43:04.214Z",
+  "generatedAt": "2026-05-26T20:12:56.899Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,16 +7,14 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 70,
+    "live": 0,
+    "completed": 71,
     "upcoming": 3,
     "withScorecard": 71,
     "withSquads": 20
   },
-  "apiCalls": 5,
-  "errors": [
-    "matches: matches: Invalid operation"
-  ],
+  "apiCalls": 4,
+  "errors": [],
   "matches": [
     {
       "id": "547b47e3-b2d9-4f51-8a49-8e7e4c946a6e",
@@ -11159,7 +11157,7 @@
       "id": "cae89dea-04b5-4b01-85c9-e0c05419fa4f",
       "name": "Royal Challengers Bengaluru vs Gujarat Titans, Qualifier 1, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Gujarat Titans opt to bowl",
+      "status": "Royal Challengers Bengaluru won by 92 runs",
       "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
       "date": "2026-05-26",
       "dateTimeGMT": "2026-05-26T14:00:00",
@@ -11183,8 +11181,49 @@
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "cae89dea-04b5-4b01-85c9-e0c05419fa4f",
+        "name": "Royal Challengers Bengaluru vs Gujarat Titans, Qualifier 1, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Gujarat Titans opt to bowl",
+        "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
+        "date": "2026-05-26",
+        "dateTimeGMT": "2026-05-26T14:00:00",
+        "teams": [
+          "Royal Challengers Bengaluru",
+          "Gujarat Titans"
+        ],
+        "teamInfo": [
+          {
+            "name": "Gujarat Titans",
+            "shortname": "GT",
+            "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
+          },
+          {
+            "name": "Royal Challengers Bengaluru",
+            "shortname": "RCBW",
+            "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 152,
+            "w": 3,
+            "o": 14.3,
+            "inning": "Royal Challengers Bengaluru Inning 1"
+          }
+        ],
+        "tossWinner": "gujarat titans",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Gujarat Titans": [
           {
@@ -11496,47 +11535,6 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "cae89dea-04b5-4b01-85c9-e0c05419fa4f",
-        "name": "Royal Challengers Bengaluru vs Gujarat Titans, Qualifier 1, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Gujarat Titans opt to bowl",
-        "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
-        "date": "2026-05-26",
-        "dateTimeGMT": "2026-05-26T14:00:00",
-        "teams": [
-          "Royal Challengers Bengaluru",
-          "Gujarat Titans"
-        ],
-        "teamInfo": [
-          {
-            "name": "Gujarat Titans",
-            "shortname": "GT",
-            "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
-          },
-          {
-            "name": "Royal Challengers Bengaluru",
-            "shortname": "RCBW",
-            "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 152,
-            "w": 3,
-            "o": 14.3,
-            "inning": "Royal Challengers Bengaluru Inning 1"
-          }
-        ],
-        "tossWinner": "gujarat titans",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
@@ -11896,17 +11894,22 @@
     },
     {
       "id": "ab13f9a8-3660-4706-91d2-c1363810415d",
-      "name": "Tbc vs Tbc, Qualifier 2, Indian Premier League 2026",
+      "name": "Gujarat Titans vs Tbc, Qualifier 2, Indian Premier League 2026",
       "matchType": "t20",
       "status": "Match starts at May 29, 14:00 GMT",
       "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
       "date": "2026-05-29",
       "dateTimeGMT": "2026-05-29T14:00:00",
       "teams": [
-        "Tbc",
+        "Gujarat Titans",
         "Tbc"
       ],
       "teamInfo": [
+        {
+          "name": "Gujarat Titans",
+          "shortname": "GT",
+          "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
+        },
         {
           "name": "Tbc",
           "shortname": "TBC",
@@ -11922,17 +11925,22 @@
     },
     {
       "id": "182d11e6-db9d-4f56-a43a-52adb7b4d42a",
-      "name": "Tbc vs Tbc, Final, Indian Premier League 2026",
+      "name": "Royal Challengers Bengaluru vs Tbc, Final, Indian Premier League 2026",
       "matchType": "t20",
       "status": "Match starts at May 31, 14:00 GMT",
       "venue": "Narendra Modi Stadium, Ahmedabad",
       "date": "2026-05-31",
       "dateTimeGMT": "2026-05-31T14:00:00",
       "teams": [
-        "Tbc",
+        "Royal Challengers Bengaluru",
         "Tbc"
       ],
       "teamInfo": [
+        {
+          "name": "Royal Challengers Bengaluru",
+          "shortname": "RCBW",
+          "img": "https://g.cricapi.com/iapi/21439-638468478038395955.jpg?w=48"
+        },
         {
           "name": "Tbc",
           "shortname": "TBC",
