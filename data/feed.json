@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-27T15:53:20.111Z",
+  "generatedAt": "2026-05-27T20:22:56.341Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 1,
-    "completed": 71,
+    "live": 0,
+    "completed": 72,
     "upcoming": 2,
     "withScorecard": 72,
     "withSquads": 20
   },
-  "apiCalls": 5,
+  "apiCalls": 4,
   "errors": [],
   "matches": [
     {
@@ -11541,7 +11541,7 @@
       "id": "58ddaae3-9fa7-4110-97f8-c9ae6d80099b",
       "name": "Sunrisers Hyderabad vs Rajasthan Royals, Eliminator, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Sunrisers Hyderabad opt to bowl",
+      "status": "Rajasthan Royals won by 47 runs",
       "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
       "date": "2026-05-27",
       "dateTimeGMT": "2026-05-27T14:00:00",
@@ -11565,8 +11565,49 @@
       "bbbEnabled": false,
       "hasSquad": true,
       "matchStarted": true,
-      "matchEnded": false,
+      "matchEnded": true,
       "series": "Indian Premier League 2026",
+      "fullInfo": {
+        "id": "58ddaae3-9fa7-4110-97f8-c9ae6d80099b",
+        "name": "Sunrisers Hyderabad vs Rajasthan Royals, Eliminator, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Sunrisers Hyderabad opt to bowl",
+        "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
+        "date": "2026-05-27",
+        "dateTimeGMT": "2026-05-27T14:00:00",
+        "teams": [
+          "Sunrisers Hyderabad",
+          "Rajasthan Royals"
+        ],
+        "teamInfo": [
+          {
+            "name": "Rajasthan Royals",
+            "shortname": "RR",
+            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
+          },
+          {
+            "name": "Sunrisers Hyderabad",
+            "shortname": "SRH",
+            "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 240,
+            "w": 8,
+            "o": 19.4,
+            "inning": "Rajasthan Royals Inning 1"
+          }
+        ],
+        "tossWinner": "sunrisers hyderabad",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
+      },
       "squads": {
         "Rajasthan Royals": [
           {
@@ -11890,47 +11931,6 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
-      },
-      "fullInfo": {
-        "id": "58ddaae3-9fa7-4110-97f8-c9ae6d80099b",
-        "name": "Sunrisers Hyderabad vs Rajasthan Royals, Eliminator, Indian Premier League 2026",
-        "matchType": "t20",
-        "status": "Sunrisers Hyderabad opt to bowl",
-        "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
-        "date": "2026-05-27",
-        "dateTimeGMT": "2026-05-27T14:00:00",
-        "teams": [
-          "Sunrisers Hyderabad",
-          "Rajasthan Royals"
-        ],
-        "teamInfo": [
-          {
-            "name": "Rajasthan Royals",
-            "shortname": "RR",
-            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
-          },
-          {
-            "name": "Sunrisers Hyderabad",
-            "shortname": "SRH",
-            "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
-          }
-        ],
-        "score": [
-          {
-            "r": 240,
-            "w": 8,
-            "o": 19.4,
-            "inning": "Rajasthan Royals Inning 1"
-          }
-        ],
-        "tossWinner": "sunrisers hyderabad",
-        "tossChoice": "bowl",
-        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
-        "fantasyEnabled": true,
-        "bbbEnabled": false,
-        "hasSquad": true,
-        "matchStarted": true,
-        "matchEnded": false
       }
     },
     {
