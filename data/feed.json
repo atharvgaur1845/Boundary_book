@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-27T10:01:47.280Z",
+  "generatedAt": "2026-05-27T15:53:20.111Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 0,
+    "live": 1,
     "completed": 71,
-    "upcoming": 3,
-    "withScorecard": 71,
+    "upcoming": 2,
+    "withScorecard": 72,
     "withSquads": 20
   },
-  "apiCalls": 4,
+  "apiCalls": 5,
   "errors": [],
   "matches": [
     {
@@ -11541,7 +11541,7 @@
       "id": "58ddaae3-9fa7-4110-97f8-c9ae6d80099b",
       "name": "Sunrisers Hyderabad vs Rajasthan Royals, Eliminator, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Match starts at May 27, 14:00 GMT",
+      "status": "Sunrisers Hyderabad opt to bowl",
       "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
       "date": "2026-05-27",
       "dateTimeGMT": "2026-05-27T14:00:00",
@@ -11561,10 +11561,10 @@
           "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
-      "matchStarted": false,
+      "matchStarted": true,
       "matchEnded": false,
       "series": "Indian Premier League 2026",
       "squads": {
@@ -11890,6 +11890,47 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
+      },
+      "fullInfo": {
+        "id": "58ddaae3-9fa7-4110-97f8-c9ae6d80099b",
+        "name": "Sunrisers Hyderabad vs Rajasthan Royals, Eliminator, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Sunrisers Hyderabad opt to bowl",
+        "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
+        "date": "2026-05-27",
+        "dateTimeGMT": "2026-05-27T14:00:00",
+        "teams": [
+          "Sunrisers Hyderabad",
+          "Rajasthan Royals"
+        ],
+        "teamInfo": [
+          {
+            "name": "Rajasthan Royals",
+            "shortname": "RR",
+            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
+          },
+          {
+            "name": "Sunrisers Hyderabad",
+            "shortname": "SRH",
+            "img": "https://g.cricapi.com/iapi/279-637852957609490368.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 240,
+            "w": 8,
+            "o": 19.4,
+            "inning": "Rajasthan Royals Inning 1"
+          }
+        ],
+        "tossWinner": "sunrisers hyderabad",
+        "tossChoice": "bowl",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
       }
     },
     {
