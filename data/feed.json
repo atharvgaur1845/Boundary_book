@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-29T09:59:34.401Z",
+  "generatedAt": "2026-05-29T15:43:43.886Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -7,13 +7,13 @@
   },
   "counts": {
     "total": 74,
-    "live": 0,
+    "live": 1,
     "completed": 72,
-    "upcoming": 2,
-    "withScorecard": 72,
+    "upcoming": 1,
+    "withScorecard": 73,
     "withSquads": 21
   },
-  "apiCalls": 4,
+  "apiCalls": 5,
   "errors": [],
   "matches": [
     {
@@ -11937,7 +11937,7 @@
       "id": "ab13f9a8-3660-4706-91d2-c1363810415d",
       "name": "Gujarat Titans vs Rajasthan Royals, Qualifier 2, Indian Premier League 2026",
       "matchType": "t20",
-      "status": "Match starts at May 29, 14:00 GMT",
+      "status": "Rajasthan Royals opt to bat",
       "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
       "date": "2026-05-29",
       "dateTimeGMT": "2026-05-29T14:00:00",
@@ -11957,10 +11957,10 @@
           "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
         }
       ],
-      "fantasyEnabled": false,
+      "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
-      "matchStarted": false,
+      "matchStarted": true,
       "matchEnded": false,
       "series": "Indian Premier League 2026",
       "squads": {
@@ -12280,6 +12280,47 @@
             "img": "https://h.cricapi.com/img/icon512.png"
           }
         ]
+      },
+      "fullInfo": {
+        "id": "ab13f9a8-3660-4706-91d2-c1363810415d",
+        "name": "Gujarat Titans vs Rajasthan Royals, Qualifier 2, Indian Premier League 2026",
+        "matchType": "t20",
+        "status": "Rajasthan Royals opt to bat",
+        "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur, New Chandigarh",
+        "date": "2026-05-29",
+        "dateTimeGMT": "2026-05-29T14:00:00",
+        "teams": [
+          "Gujarat Titans",
+          "Rajasthan Royals"
+        ],
+        "teamInfo": [
+          {
+            "name": "Gujarat Titans",
+            "shortname": "GT",
+            "img": "https://g.cricapi.com/iapi/172-637852957798476823.png?w=48"
+          },
+          {
+            "name": "Rajasthan Royals",
+            "shortname": "RR",
+            "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
+          }
+        ],
+        "score": [
+          {
+            "r": 142,
+            "w": 5,
+            "o": 15.1,
+            "inning": "rajasthan royals Inning 1"
+          }
+        ],
+        "tossWinner": "rajasthan royals",
+        "tossChoice": "bat",
+        "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
+        "fantasyEnabled": true,
+        "bbbEnabled": false,
+        "hasSquad": true,
+        "matchStarted": true,
+        "matchEnded": false
       }
     },
     {
