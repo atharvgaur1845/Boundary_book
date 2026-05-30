@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T16:06:47.491Z",
+  "generatedAt": "2026-05-30T19:21:36.397Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -13,7 +13,7 @@
     "withScorecard": 73,
     "withSquads": 22
   },
-  "apiCalls": 4,
+  "apiCalls": 3,
   "errors": [],
   "matches": [
     {
@@ -11957,6 +11957,21 @@
           "img": "https://g.cricapi.com/iapi/251-637852956607161886.png?w=48"
         }
       ],
+      "score": [
+        {
+          "r": 214,
+          "w": 6,
+          "o": 20,
+          "inning": "rajasthan royals Inning 1"
+        },
+        {
+          "r": 219,
+          "w": 3,
+          "o": 18.4,
+          "inning": "Gujarat Titans,Rajasthan Royals Inning 1"
+        }
+      ],
+      "series_id": "87c62aac-bc3c-4738-ab93-19da0690488f",
       "fantasyEnabled": true,
       "bbbEnabled": false,
       "hasSquad": true,
