@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T19:21:34.230Z",
+  "generatedAt": "2026-05-31T22:03:37.287Z",
   "source": "cricapi.com",
   "series": {
     "id": "87c62aac-bc3c-4738-ab93-19da0690488f",
@@ -14,7 +14,10 @@
     "withSquads": 22
   },
   "apiCalls": 3,
-  "errors": [],
+  "errors": [
+    "matches: matches: Invalid operation",
+    "currentMatches: currentMatches: Invalid operation"
+  ],
   "matches": [
     {
       "id": "547b47e3-b2d9-4f51-8a49-8e7e4c946a6e",
